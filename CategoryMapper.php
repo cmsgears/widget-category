@@ -21,6 +21,8 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	public $notes		= 'Note: Choose at least one category to map.';
 
 	public $template	= 'mapper';
+	
+	public $allDisabled	= false;
 
 	// Private Variables -------------------
 
@@ -53,6 +55,7 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 		$widgetHtml = $this->render( $this->template, [
 			'categories' => $this->categories,
 			'model' => $this->model,
+			'allDisabled' => $this->allDisabled,
 			'notes' => $this->notes
 		]);
 
