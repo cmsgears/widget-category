@@ -50,7 +50,7 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 
 	// CategoryWidget
 
-	public function renderWidget() {
+	public function renderWidget( $config = [] ) {
 
 		$widgetHtml = $this->render( $this->template, [
 			'categories' => $this->categories,
