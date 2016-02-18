@@ -30,11 +30,19 @@
 
 				if( in_array( $category[ 'id' ], $modelCategories ) ) {
 ?>
-					<span class="category depth-<?= $depth ?>"><input type="checkbox" name="Binder[bindedData][]" value="<?= $category[ 'id' ] ?>" checked disabled /> <?= $category[ 'name' ] ?></span>
+					<span class="category depth-<?= $depth ?>">
+						<input type="hidden" name="Binder[allData][]" value="<?= $category[ 'id' ] ?>" />
+						<input type="checkbox" name="Binder[bindedData][]" value="<?= $category[ 'id' ] ?>" checked disabled /> 
+						<?= $category[ 'name' ] ?>
+					</span>
 <?php			}
 				else {
 ?>
-					<span class="category depth-<?= $depth ?>"><input type="checkbox" name="Binder[bindedData][]" value="<?= $category[ 'id' ] ?>" disabled /> <?= $category[ 'name' ] ?></span>
+					<span class="category depth-<?= $depth ?>">
+						<input type="hidden" name="Binder[allData][]" value="<?= $category[ 'id' ] ?>" />
+						<input type="checkbox" name="Binder[bindedData][]" value="<?= $category[ 'id' ] ?>" disabled /> 
+						<?= $category[ 'name' ] ?>
+					</span>
 <?php			}
 			}
 			else {
@@ -42,11 +50,19 @@
 
 				if( in_array( $category[ 'id' ], $modelCategories ) ) {
 ?>
-					<span class="category depth-<?= $depth ?>"><input type="checkbox" name="Binder[bindedData][]" value="<?= $category[ 'id' ] ?>" checked /> <?= $category[ 'name' ] ?></span>
+					<span class="category depth-<?= $depth ?>">
+						<input type="hidden" name="Binder[allData][]" value="<?= $category[ 'id' ] ?>" />
+						<input type="checkbox" name="Binder[bindedData][]" value="<?= $category[ 'id' ] ?>" checked /> 
+						<?= $category[ 'name' ] ?>
+					</span>
 <?php			}
 				else {
 ?>
-					<span class="category depth-<?= $depth ?>"><input type="checkbox" name="Binder[bindedData][]" value="<?= $category[ 'id' ] ?>" /> <?= $category[ 'name' ] ?></span>
+					<span class="category depth-<?= $depth ?>">
+						<input type="hidden" name="Binder[allData][]" value="<?= $category[ 'id' ] ?>" />
+						<input type="checkbox" name="Binder[bindedData][]" value="<?= $category[ 'id' ] ?>" /> 
+						<?= $category[ 'name' ] ?>
+					</span>
 <?php			}
 			}
 		}
