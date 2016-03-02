@@ -14,13 +14,17 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	
 	// Type to be used to form the Category Map
 	public $type;
-	
+
+	public $levelList	= true;
+
 	// The model using Category Trait
 	public $model;
-	
+
+	public $binderModel	= 'Binder';
+
 	public $notes		= 'Note: Choose at least one category to map.';
 
-	public $template	= 'mapper';
+	public $template	= 'mapper-scroller';
 	
 	public $allDisabled	= false;
 
@@ -43,7 +47,14 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 
     public function run() {
 
-		$this->categories	= CategoryService::getLevelListByType( $this->type );
+		if( $this->levelList ) {
+
+			$this->categories	= CategoryService::getLevelListByType( $this->type );	
+		}
+		else {
+
+			$this->categories	= CategoryService::findByType( $this->type );
+		}
 
         return $this->renderWidget();
     }
@@ -53,8 +64,11 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	public function renderWidget( $config = [] ) {
 
 		$widgetHtml = $this->render( $this->template, [
+			'type' => $this->type,
 			'categories' => $this->categories,
+			'levelList' => $this->levelList,
 			'model' => $this->model,
+			'binderModel' => $this->binderModel,
 			'allDisabled' => $this->allDisabled,
 			'notes' => $this->notes
 		]);
