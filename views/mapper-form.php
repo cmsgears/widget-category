@@ -26,7 +26,7 @@
 ?>
 					<span class="category col2">
 						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-						<input type="checkbox" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" checked disabled /> 
+						<input type="<?=$inputType?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" checked disabled /> 
 						<?= $category[ 'name' ] ?>
 					</span>
 <?php			}
@@ -34,7 +34,7 @@
 ?>
 					<span class="category col2">
 						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-						<input type="checkbox" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" disabled /> 
+						<input type="<?=$inputType?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" disabled /> 
 						<?= $category[ 'name' ] ?>
 					</span>
 <?php			}
@@ -46,7 +46,7 @@
 ?>
 					<span class="category col2">
 						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-						<input type="checkbox" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" checked /> 
+						<input type="<?=$inputType?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" checked /> 
 						<?= $category[ 'name' ] ?>
 					</span>
 <?php			}
@@ -54,7 +54,7 @@
 ?>
 					<span class="category col2">
 						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-						<input type="checkbox" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" /> 
+						<input type="<?=$inputType?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" /> 
 						<?= $category[ 'name' ] ?>
 					</span>
 <?php			}

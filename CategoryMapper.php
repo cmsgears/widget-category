@@ -25,6 +25,8 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	public $notes		= 'Note: Choose at least one category to map.';
 
 	public $template	= 'mapper-scroller';
+    
+    public $inputType   = 'checkbox';
 	
 	public $allDisabled	= false;
 
@@ -70,7 +72,8 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 			'model' => $this->model,
 			'binderModel' => $this->binderModel,
 			'allDisabled' => $this->allDisabled,
-			'notes' => $this->notes
+			'notes' => $this->notes,
+			'inputType' => $this->inputType
 		]);
 
         return Html::tag( 'div', $widgetHtml, $this->options );
