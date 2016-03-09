@@ -6,35 +6,34 @@ use yii\helpers\Html;
 
 use cmsgears\core\common\services\CategoryService;
 
-class CategoryMapper extends \cmsgears\core\common\base\Widget {
+class OptionMapper extends \cmsgears\core\common\base\Widget {
 
 	// Variables ---------------------------------------------------
 
 	// Public Variables --------------------
-	
-	// Type to be used to form the Category Map
-	public $type;
 
-	public $levelList	= true;
+	public $categoryType	= null;
+	public $categorySlug	= null;
 
-	// The model using Category Trait
+	// The model using Option Trait
 	public $model;
 
 	public $binderModel	= 'Binder';
 
-	public $notes		= 'Note: Choose at least one category to map.';
-    
+	public $notes		= 'Note: Choose at least one option to map.';
+
     public $inputType   = 'checkbox';
-	
+
 	public $allDisabled	= false;
 
-	public $templateDir	= '@cmsgears/widget-category/views/category';
+	public $templateDir	= '@cmsgears/widget-category/views/option';
 	public $template	= 'scroller';
 
 	// Private Variables -------------------
 
-	private $categories;
-	
+	private $category;
+	private $categoryOptions;
+
 	// Constructor and Initialisation ------------------------------
 
 	// yii\base\Object
@@ -50,14 +49,8 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 
     public function run() {
 
-		if( $this->levelList ) {
-
-			$this->categories	= CategoryService::getLevelListByType( $this->type );	
-		}
-		else {
-
-			$this->categories	= CategoryService::findByType( $this->type );
-		}
+		$this->category			= CategoryService::findBySlug( $this->categorySlug );
+		$this->categoryOptions 	= $this->category->options;
 
         return $this->renderWidget();
     }
@@ -67,9 +60,8 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	public function renderWidget( $config = [] ) {
 
 		$widgetHtml = $this->render( $this->template, [
-			'type' => $this->type,
-			'categories' => $this->categories,
-			'levelList' => $this->levelList,
+			'category' => $this->category,
+			'options' => $this->categoryOptions,
 			'model' => $this->model,
 			'binderModel' => $this->binderModel,
 			'allDisabled' => $this->allDisabled,
