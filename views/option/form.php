@@ -1,7 +1,7 @@
-<div class="wrap-categories clearfix">
+<div class="wrap-options clearfix">
 <?php
 	if( count( $options ) > 0 ) {
-		
+
 		$modelOptions	= $model->getOptionIdListByCategory( $category );
 
 		foreach ( $options as $option ) {
@@ -10,18 +10,18 @@
 
 				if( in_array( $option->id, $modelOptions ) ) {
 ?>
-					<span class="category col2">
+					<span class="options col2">
 						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $option->id ?>" />
-						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $option->id ?>" checked disabled /> 
-						<?= $option->name ?>
+						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $option->id ?>" checked disabled />
+						<?= $option->value ?>
 					</span>
 <?php			}
 				else {
 ?>
-					<span class="category col2">
+					<span class="options col2">
 						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $option->id ?>" />
-						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $option->id ?>" disabled /> 
-						<?= $option->name ?>
+						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $option->id ?>" disabled />
+						<?= $option->value ?>
 					</span>
 <?php			}
 			}
@@ -29,18 +29,18 @@
 
 				if( in_array( $option->id, $modelOptions ) ) {
 ?>
-					<span class="category col2">
+					<span class="options col2">
 						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $option->id ?>" />
-						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $option->id ?>" checked /> 
-						<?= $option->name ?>
+						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $option->id ?>" checked />
+						<?= $option->value ?>
 					</span>
 <?php			}
 				else {
 ?>
-					<span class="category col2">
+					<span class="options col2">
 						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $option->id ?>" />
-						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $option->id ?>" /> 
-						<?= $option->name ?>
+						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $option->id ?>" />
+						<?= $option->value ?>
 					</span>
 <?php			}
 			}
