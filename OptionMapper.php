@@ -4,7 +4,7 @@ namespace cmsgears\widgets\category;
 use \Yii;
 use yii\helpers\Html;
 
-use cmsgears\core\common\services\CategoryService;
+use cmsgears\core\common\services\resources\CategoryService;
 
 class OptionMapper extends \cmsgears\core\common\base\Widget {
 

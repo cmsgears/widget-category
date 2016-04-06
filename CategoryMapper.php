@@ -4,14 +4,14 @@ namespace cmsgears\widgets\category;
 use \Yii;
 use yii\helpers\Html;
 
-use cmsgears\core\common\services\CategoryService;
+use cmsgears\core\common\services\resources\CategoryService;
 
 class CategoryMapper extends \cmsgears\core\common\base\Widget {
 
 	// Variables ---------------------------------------------------
 
 	// Public Variables --------------------
-	
+
 	// Type to be used to form the Category Map
 	public $type;
 
@@ -23,9 +23,9 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	public $binderModel	= 'Binder';
 
 	public $notes		= 'Note: Choose at least one category to map.';
-    
+
     public $inputType   = 'checkbox';
-	
+
 	public $allDisabled	= false;
 
 	public $templateDir	= '@cmsgears/widget-category/views/category';
@@ -34,7 +34,7 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	// Private Variables -------------------
 
 	private $categories;
-	
+
 	// Constructor and Initialisation ------------------------------
 
 	// yii\base\Object
@@ -52,7 +52,7 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 
 		if( $this->levelList ) {
 
-			$this->categories	= CategoryService::getLevelListByType( $this->type );	
+			$this->categories	= CategoryService::getLevelListByType( $this->type );
 		}
 		else {
 
