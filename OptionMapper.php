@@ -49,7 +49,7 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 
     public function run() {
 
-		$this->category			= CategoryService::findBySlug( $this->categorySlug );
+		$this->category			= CategoryService::findBySlugType( $this->categorySlug, $this->categoryType );
 		$this->categoryOptions 	= $this->category->options;
 
         return $this->renderWidget();
