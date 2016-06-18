@@ -1,3 +1,14 @@
+<?php
+$categories 	= $widget->categories;
+$type 			= $widget->type;
+$levelList 		= $widget->levelList;
+$model 			= $widget->model;
+$binderModel 	= $widget->binderModel;
+$notes 			= $widget->notes;
+$showNotes 		= $widget->showNotes;
+$inputType 		= $widget->inputType;
+$disabled		= $widget->disabled;
+?>
 <div class="wrap-categories cscroller">
 <?php
 	if( count( $categories ) > 0 ) {
@@ -8,23 +19,23 @@
 		$depth				= 0;
 
 		foreach ( $categories as $category ) {
-			
+
 			if( $levelList ) {
 
 				if( isset( $category[ 'rootId' ] ) ) {
-	
+
 					if( $category[ 'rootId' ] != $rootId ) {
-	
+
 						$depth	= 0;
 						$rootId	= $category[ 'rootId' ];
 					}
 					else {
-	
+
 						$depth	= $category[ 'depth' ];
 					}
 				}
 				else {
-	
+
 					$depth	= 0;
 				}
 			}
@@ -36,45 +47,22 @@
 				$category		= $temp;
 			}
 
-			if( $allDisabled ) {
-
-				if( in_array( $category[ 'id' ], $modelCategories ) ) {
+			if( in_array( $category[ 'id' ], $modelCategories ) ) {
 ?>
-					<span class="category depth-<?= $depth ?>">
-						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-						<input type="checkbox" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" checked disabled /> 
-						<?= $category[ 'name' ] ?>
-					</span>
-<?php			}
-				else {
-?>
-					<span class="category depth-<?= $depth ?>">
-						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-						<input type="checkbox" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" disabled /> 
-						<?= $category[ 'name' ] ?>
-					</span>
-<?php			}
-			}
+				<span class="category depth-<?= $depth ?>">
+					<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
+					<input type="checkbox" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" checked <?= $disabled ? 'disabled' : '' ?> />
+					<?= $category[ 'name' ] ?>
+				</span>
+<?php		}
 			else {
-
-
-				if( in_array( $category[ 'id' ], $modelCategories ) ) {
 ?>
-					<span class="category depth-<?= $depth ?>">
-						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-						<input type="checkbox" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" checked /> 
-						<?= $category[ 'name' ] ?>
-					</span>
-<?php			}
-				else {
-?>
-					<span class="category depth-<?= $depth ?>">
-						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-						<input type="checkbox" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" /> 
-						<?= $category[ 'name' ] ?>
-					</span>
-<?php			}
-			}
+				<span class="category depth-<?= $depth ?>">
+					<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
+					<input type="checkbox" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" <?= $disabled ? 'disabled' : '' ?> />
+					<?= $category[ 'name' ] ?>
+				</span>
+<?php		}
 		}
 	}
 	else {
@@ -84,6 +72,6 @@
 ?>
 </div>
 <div class="clear filler-height"></div>
-<?php if( isset( $notes ) ) { ?>
+<?php if( $showNotes ) { ?>
 	<div class="note"><?= $notes ?></div>
 <?php } ?>

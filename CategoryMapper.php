@@ -1,8 +1,12 @@
 <?php
 namespace cmsgears\widgets\category;
 
+// Yii Imports
 use \Yii;
 use yii\helpers\Html;
+
+// CMG Imports
+use cmsgears\core\common\config\CoreGlobal;
 
 use cmsgears\core\common\services\resources\CategoryService;
 
@@ -12,28 +16,42 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 
 	// Public Variables --------------------
 
-	// Type to be used to form the Category Map
-	public $type;
+	// Category models
+	public $categories		= [];
 
-	public $levelList	= true;
+	// Type to be used to search categories.
+	public $type			= CoreGlobal::TYPE_SYSTEM;
+
+	// Flag to search category for given type in case Category models not provided or empty.
+	public $searchByType	= true;
+
+	// Flag to search categories following parent child relationship.
+	public $levelList		= true;
 
 	// The model using Category Trait
 	public $model;
 
-	public $binderModel	= 'Binder';
+	public $binderModel		= 'Binder';
 
-	public $notes		= 'Note: Choose at least one category to map.';
+	// Notes to help user in choosing categories.
+	public $notes			= 'Note: Choose at least one category to map.';
 
-    public $inputType   = 'checkbox';
+	// Flag to show notes
+	public $showNotes		= true;
 
-	public $allDisabled	= false;
+	// Input type among checkbox, radio to render the chooser.
+    public $inputType   	= 'checkbox';
 
-	public $templateDir	= '@cmsgears/widget-category/views/category';
-	public $template	= 'scroller';
+	// Disable all the rendered categories.
+	public $disabled		= false;
+
+	// Override default view path
+	public $templateDir		= '@cmsgears/widget-category/views/category';
+
+	// Use form view only when levelList is set to false.
+	public $template		= 'scroller';
 
 	// Private Variables -------------------
-
-	private $categories;
 
 	// Constructor and Initialisation ------------------------------
 
@@ -50,13 +68,19 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 
     public function run() {
 
-		if( $this->levelList ) {
+		// Execute query only if categories are not provided and search by type is enabled.
+		if( count( $this->categories ) == 0 && $this->searchByType ) {
 
-			$this->categories	= CategoryService::getLevelListByType( $this->type );
-		}
-		else {
+			// Generate category following parent child relationship.
+			if( $this->levelList ) {
 
-			$this->categories	= CategoryService::findByType( $this->type );
+				$this->categories	= CategoryService::getLevelListByType( $this->type );
+			}
+			// Generat flat list irrespective of parent child relationship.
+			else {
+
+				$this->categories	= CategoryService::findByType( $this->type );
+			}
 		}
 
         return $this->renderWidget();
@@ -66,16 +90,7 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 
 	public function renderWidget( $config = [] ) {
 
-		$widgetHtml = $this->render( $this->template, [
-			'type' => $this->type,
-			'categories' => $this->categories,
-			'levelList' => $this->levelList,
-			'model' => $this->model,
-			'binderModel' => $this->binderModel,
-			'allDisabled' => $this->allDisabled,
-			'notes' => $this->notes,
-			'inputType' => $this->inputType
-		]);
+		$widgetHtml = $this->render( $this->template, [ 'widget' => $this ] );
 
         return Html::tag( 'div', $widgetHtml, $this->options );
 	}
