@@ -8,8 +8,6 @@ use yii\helpers\Html;
 // CMG Imports
 use cmsgears\core\common\config\CoreGlobal;
 
-use cmsgears\core\common\services\resources\CategoryService;
-
 class CategoryMapper extends \cmsgears\core\common\base\Widget {
 
 	// Variables ---------------------------------------------------
@@ -53,6 +51,8 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 
 	// Private Variables -------------------
 
+	private $categoryService;
+
 	// Constructor and Initialisation ------------------------------
 
 	// yii\base\Object
@@ -60,6 +60,8 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
     public function init() {
 
         parent::init();
+
+		$this->categoryService	= Yii::$app->factory->get( 'categoryService' );
     }
 
 	// Instance Methods --------------------------------------------
@@ -74,12 +76,12 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 			// Generate category following parent child relationship.
 			if( $this->levelList ) {
 
-				$this->categories	= CategoryService::getLevelListByType( $this->type );
+				$this->categories	= $this->categoryService->getLevelListByType( $this->type );
 			}
 			// Generat flat list irrespective of parent child relationship.
 			else {
 
-				$this->categories	= CategoryService::findByType( $this->type );
+				$this->categories	= $this->categoryService->findByType( $this->type );
 			}
 		}
 

@@ -31,6 +31,8 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 
 	// Private Variables -------------------
 
+	private $categoryService;
+
 	private $category;
 	private $categoryOptions;
 
@@ -41,6 +43,8 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
     public function init() {
 
         parent::init();
+
+		$this->categoryService	= Yii::$app->factory->get( 'categoryService' );
     }
 
 	// Instance Methods --------------------------------------------
@@ -49,7 +53,7 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 
     public function run() {
 
-		$this->category			= CategoryService::findBySlugType( $this->categorySlug, $this->categoryType );
+		$this->category			= $this->categoryService->getBySlugType( $this->categorySlug, $this->categoryType );
 		$this->categoryOptions 	= $this->category->options;
 
         return $this->renderWidget();
