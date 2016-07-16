@@ -21,7 +21,7 @@ $deleteActionUrl	= $widget->deleteActionUrl;
 		<div class="auto-mapped">
 			<ul class="item-list">
 			<?php
-				$categories	= $model->getCategoryIdNameMap();
+				$categories	= $model->getCategoryIdNameMap( true );
 
 				foreach ( $categories as $key => $value ) {
 			?>
@@ -47,7 +47,7 @@ $deleteActionUrl	= $widget->deleteActionUrl;
 			<input type="hidden" name="categoryId" />
 			<ul class="item-list">
 			<?php
-				$categories	= $model->getCategoryIdNameMap();
+				$categories	= $model->getCategoryIdNameMap( true );
 
 				foreach ( $categories as $key => $value ) {
 			?>
