@@ -2,7 +2,7 @@
 <?php
 	if( count( $options ) > 0 ) {
 
-		$modelOptions	= $model->getOptionIdListByCategory( $category );
+		$modelOptions	= $model->getOptionIdListByCategoryId( $category->id );
 
 		foreach ( $options as $option ) {
 
