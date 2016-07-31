@@ -1,3 +1,12 @@
+<?php
+$category 		= $widget->category;
+$options 		= $widget->categoryOptions;
+$model			= $widget->model;
+$binderModel	= $widget->binderModel;
+$disabled 		= $widget->disabled;
+$notes 			= $widget->notes;
+$inputType 		= $widget->inputType;
+?>
 <div class="wrap-options clearfix">
 <?php
 	if( count( $options ) > 0 ) {
@@ -6,7 +15,7 @@
 
 		foreach ( $options as $option ) {
 
-			if( $allDisabled ) {
+			if( $disabled ) {
 
 				if( in_array( $option->id, $modelOptions ) ) {
 ?>

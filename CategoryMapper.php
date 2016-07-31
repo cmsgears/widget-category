@@ -81,7 +81,7 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 			// Generat flat list irrespective of parent child relationship.
 			else {
 
-				$this->categories	= $this->categoryService->findByType( $this->type );
+				$this->categories	= $this->categoryService->getByType( $this->type );
 			}
 		}
 

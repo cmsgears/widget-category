@@ -10,7 +10,17 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 
 	// Variables ---------------------------------------------------
 
-	// Public Variables --------------------
+	// Globals -------------------------------
+
+	// Constants --------------
+
+	// Public -----------------
+
+	// Protected --------------
+
+	// Variables -----------------------------
+
+	// Public -----------------
 
 	public $categoryType	= null;
 	public $categorySlug	= null;
@@ -24,21 +34,25 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 
     public $inputType   = 'checkbox';
 
-	public $allDisabled	= false;
+	public $disabled	= false;
 
 	public $templateDir	= '@cmsgears/widget-category/views/option';
 	public $template	= 'scroller';
 
-	// Private Variables -------------------
+	// Optional to use category in case type and slug are not given.
+	public $category;
+
+	public $categoryOptions;
+
+	// Protected --------------
+
+	// Private ----------------
 
 	private $categoryService;
 
-	private $category;
-	private $categoryOptions;
+	// Traits ------------------------------------------------------
 
 	// Constructor and Initialisation ------------------------------
-
-	// yii\base\Object
 
     public function init() {
 
@@ -47,34 +61,36 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 		$this->categoryService	= Yii::$app->factory->get( 'categoryService' );
     }
 
-	// Instance Methods --------------------------------------------
+	// Instance methods --------------------------------------------
 
-	// yii\base\Widget
+	// Yii interfaces ------------------------
+
+	// Yii parent classes --------------------
+
+	// yii\base\Widget --------
 
     public function run() {
 
-		$this->category			= $this->categoryService->getBySlugType( $this->categorySlug, $this->categoryType );
-		$this->categoryOptions 	= $this->category->options;
+		// Find category for given slug and type in case category is not provided.
+		if( !isset( $this->category ) ) {
+
+			$this->category			= $this->categoryService->getBySlugType( $this->categorySlug, $this->categoryType );
+			$this->categoryOptions 	= $this->category->options;
+		}
 
         return $this->renderWidget();
     }
 
-	// CategoryWidget
+	// CMG interfaces ------------------------
+
+	// CMG parent classes --------------------
+
+	// Widget --------------------------------
 
 	public function renderWidget( $config = [] ) {
 
-		$widgetHtml = $this->render( $this->template, [
-			'category' => $this->category,
-			'options' => $this->categoryOptions,
-			'model' => $this->model,
-			'binderModel' => $this->binderModel,
-			'allDisabled' => $this->allDisabled,
-			'notes' => $this->notes,
-			'inputType' => $this->inputType
-		]);
+		$widgetHtml = $this->render( $this->template, [ 'widget' => $this ] );
 
         return Html::tag( 'div', $widgetHtml, $this->options );
 	}
 }
-
-?>
