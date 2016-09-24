@@ -32,7 +32,7 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 
 	public $notes		= 'Note: Choose at least one option to map.';
 
-    public $inputType   = 'checkbox';
+	public $inputType	= 'checkbox';
 
 	public $disabled	= false;
 
@@ -54,12 +54,12 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 
 	// Constructor and Initialisation ------------------------------
 
-    public function init() {
+	public function init() {
 
-        parent::init();
+		parent::init();
 
 		$this->categoryService	= Yii::$app->factory->get( 'categoryService' );
-    }
+	}
 
 	// Instance methods --------------------------------------------
 
@@ -69,17 +69,17 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 
 	// yii\base\Widget --------
 
-    public function run() {
+	public function run() {
 
 		// Find category for given slug and type in case category is not provided.
 		if( !isset( $this->category ) ) {
 
 			$this->category			= $this->categoryService->getBySlugType( $this->categorySlug, $this->categoryType );
-			$this->categoryOptions 	= $this->category->options;
+			$this->categoryOptions	= $this->category->options;
 		}
 
-        return $this->renderWidget();
-    }
+		return $this->renderWidget();
+	}
 
 	// CMG interfaces ------------------------
 
@@ -91,6 +91,6 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 
 		$widgetHtml = $this->render( $this->template, [ 'widget' => $this ] );
 
-        return Html::tag( 'div', $widgetHtml, $this->options );
+		return Html::tag( 'div', $widgetHtml, $this->options );
 	}
 }

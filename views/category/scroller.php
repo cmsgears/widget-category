@@ -1,12 +1,12 @@
 <?php
-$categories 	= $widget->categories;
-$type 			= $widget->type;
-$levelList 		= $widget->levelList;
-$model 			= $widget->model;
-$binderModel 	= $widget->binderModel;
-$notes 			= $widget->notes;
-$showNotes 		= $widget->showNotes;
-$inputType 		= $widget->inputType;
+$categories		= $widget->categories;
+$type			= $widget->type;
+$levelList		= $widget->levelList;
+$model			= $widget->model;
+$binderModel	= $widget->binderModel;
+$notes			= $widget->notes;
+$showNotes		= $widget->showNotes;
+$inputType		= $widget->inputType;
 $disabled		= $widget->disabled;
 ?>
 <div class="wrap-categories cscroller">

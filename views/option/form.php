@@ -1,11 +1,11 @@
 <?php
-$category 		= $widget->category;
-$options 		= $widget->categoryOptions;
+$category		= $widget->category;
+$options		= $widget->categoryOptions;
 $model			= $widget->model;
 $binderModel	= $widget->binderModel;
-$disabled 		= $widget->disabled;
-$notes 			= $widget->notes;
-$inputType 		= $widget->inputType;
+$disabled		= $widget->disabled;
+$notes			= $widget->notes;
+$inputType		= $widget->inputType;
 ?>
 <div class="wrap-options clearfix">
 <?php

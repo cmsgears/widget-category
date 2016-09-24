@@ -18,7 +18,7 @@ class CategoryAutoBox extends CategoryMapper {
 
 	public $showNotes		= true;
 
-    public $inputType   	= 'none';
+	public $inputType		= 'none';
 
 	public $template		= 'auto-box';
 

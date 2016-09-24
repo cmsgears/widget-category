@@ -38,7 +38,7 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	public $showNotes		= true;
 
 	// Input type among checkbox, radio to render the chooser.
-    public $inputType   	= 'checkbox';
+	public $inputType		= 'checkbox';
 
 	// Disable all the rendered categories.
 	public $disabled		= false;
@@ -57,18 +57,18 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 
 	// yii\base\Object
 
-    public function init() {
+	public function init() {
 
-        parent::init();
+		parent::init();
 
 		$this->categoryService	= Yii::$app->factory->get( 'categoryService' );
-    }
+	}
 
 	// Instance Methods --------------------------------------------
 
 	// yii\base\Widget
 
-    public function run() {
+	public function run() {
 
 		// Execute query only if categories are not provided and search by type is enabled.
 		if( count( $this->categories ) == 0 && $this->searchByType ) {
@@ -85,8 +85,8 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 			}
 		}
 
-        return $this->renderWidget();
-    }
+		return $this->renderWidget();
+	}
 
 	// CategoryWidget
 
@@ -94,7 +94,7 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 
 		$widgetHtml = $this->render( $this->template, [ 'widget' => $this ] );
 
-        return Html::tag( 'div', $widgetHtml, $this->options );
+		return Html::tag( 'div', $widgetHtml, $this->options );
 	}
 }
 

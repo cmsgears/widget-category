@@ -1,9 +1,9 @@
 <?php
-$type 			= $widget->type;
-$model 			= $widget->model;
-$binderModel 	= $widget->binderModel;
-$notes 			= $widget->notes;
-$showNotes 		= $widget->showNotes;
+$type			= $widget->type;
+$model			= $widget->model;
+$binderModel	= $widget->binderModel;
+$notes			= $widget->notes;
+$showNotes		= $widget->showNotes;
 $disabled		= $widget->disabled;
 
 $controller		= $widget->controller;
@@ -36,14 +36,10 @@ $deleteActionUrl	= $widget->deleteActionUrl;
 			<input type="text" class="cmt-key-up" name="name" autocomplete="off" value="" />
 		</div>
 		<div class="auto-map cmt-request" cmt-controller="<?= $controller ?>" cmt-action="<?= $mapAction ?>" action="<?= $mapActionUrl ?>" cmt-keep>
-			<input type="hidden" name="parentId" value="<?= $model->id ?>" />
-			<input type="hidden" name="parentType" value="<?= $type ?>" />
 			<input type="hidden" name="categoryId" />
 			<ul class="item-list"></ul>
 		</div>
 		<div class="auto-mapped cmt-request" cmt-controller="<?= $controller ?>" cmt-action="<?= $deleteAction ?>" action="<?= $deleteActionUrl ?>" cmt-keep>
-			<input type="hidden" name="parentId" value="<?= $model->id ?>" />
-			<input type="hidden" name="parentType" value="<?= $type ?>" />
 			<input type="hidden" name="categoryId" />
 			<ul class="item-list">
 			<?php
