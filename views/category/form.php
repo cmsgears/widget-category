@@ -8,12 +8,23 @@ $notes			= $widget->notes;
 $showNotes		= $widget->showNotes;
 $inputType		= $widget->inputType;
 $disabled		= $widget->disabled;
+$service		= $widget->service;
 ?>
 <div class="wrap-categories clearfix">
 <?php
 	if( count( $categories ) > 0 ) {
 
-		$modelCategories	= $model->getCategoryIdListByType( $type );
+		$modelCategories	= null;
+
+		if( $service ) {
+
+			$catService			= Yii::$app->factory->get( 'modelCategoryService' );
+			$modelCategories	= $catService->getActiveCategoryIdListByParent( $model->id, $type );
+		}
+		else {
+
+			$modelCategories	= $model->getCategoryIdListByType( $type );
+		}
 
 		foreach ( $categories as $category ) {
 
@@ -26,7 +37,7 @@ $disabled		= $widget->disabled;
 ?>
 				<span class="category col2">
 					<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-					<input type="<?=$inputType?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" checked <?= $disabled ? 'disabled' : '' ?> />
+					<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" checked <?= $disabled ? 'disabled' : '' ?> />
 					<?= $category[ 'name' ] ?>
 				</span>
 <?php		}
@@ -34,7 +45,7 @@ $disabled		= $widget->disabled;
 ?>
 				<span class="category col2">
 					<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-					<input type="<?=$inputType?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" <?= $disabled ? 'disabled' : '' ?> />
+					<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" <?= $disabled ? 'disabled' : '' ?> />
 					<?= $category[ 'name' ] ?>
 				</span>
 <?php		}

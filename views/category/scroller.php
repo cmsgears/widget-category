@@ -8,12 +8,23 @@ $notes			= $widget->notes;
 $showNotes		= $widget->showNotes;
 $inputType		= $widget->inputType;
 $disabled		= $widget->disabled;
+$service		= $widget->service;
 ?>
 <div class="wrap-categories cscroller">
 <?php
 	if( count( $categories ) > 0 ) {
 
-		$modelCategories	= $model->getCategoryIdListByType( $type );
+		$modelCategories	= null;
+
+		if( $service ) {
+
+			$catService			= Yii::$app->factory->get( 'modelCategoryService' );
+			$modelCategories	= $catService->getActiveCategoryIdListByParent( $model->id, $type );
+		}
+		else {
+
+			$modelCategories	= $model->getCategoryIdListByType( $type );
+		}
 
 		$rootId				= 0;
 		$depth				= 0;

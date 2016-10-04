@@ -49,6 +49,9 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	// Use form view only when levelList is set to false.
 	public $template		= 'scroller';
 
+	// Serach using model category service instead of trait
+	public $service			= false;
+
 	// Private Variables -------------------
 
 	private $categoryService;
