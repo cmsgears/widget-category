@@ -62,7 +62,7 @@ $service		= $widget->service;
 ?>
 				<span class="category depth-<?= $depth ?>">
 					<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-					<input type="checkbox" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" checked <?= $disabled ? 'disabled' : '' ?> />
+					<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" checked <?= $disabled ? 'disabled' : '' ?> />
 					<?= $category[ 'name' ] ?>
 				</span>
 <?php		}
@@ -70,7 +70,7 @@ $service		= $widget->service;
 ?>
 				<span class="category depth-<?= $depth ?>">
 					<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-					<input type="checkbox" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" <?= $disabled ? 'disabled' : '' ?> />
+					<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" <?= $disabled ? 'disabled' : '' ?> />
 					<?= $category[ 'name' ] ?>
 				</span>
 <?php		}
