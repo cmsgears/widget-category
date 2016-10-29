@@ -20,6 +20,8 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	// Type to be used to search categories.
 	public $type			= CoreGlobal::TYPE_SYSTEM;
 
+	public $parentType		= null;
+
 	// Flag to search category for given type in case Category models not provided or empty.
 	public $searchByType	= true;
 
@@ -87,6 +89,9 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 				$this->categories	= $this->categoryService->getByType( $this->type );
 			}
 		}
+
+		// Configure parent type
+		$this->parentType	= isset( $this->parentType ) ? $this->parentType : $this->type;
 
 		return $this->renderWidget();
 	}

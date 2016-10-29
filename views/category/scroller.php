@@ -1,6 +1,7 @@
 <?php
 $categories		= $widget->categories;
 $type			= $widget->type;
+$parentType		= $widget->parentType;
 $levelList		= $widget->levelList;
 $model			= $widget->model;
 $binderModel	= $widget->binderModel;
@@ -19,11 +20,11 @@ $service		= $widget->service;
 		if( $service ) {
 
 			$catService			= Yii::$app->factory->get( 'modelCategoryService' );
-			$modelCategories	= $catService->getActiveCategoryIdListByParent( $model->id, $type );
+			$modelCategories	= $catService->getActiveCategoryIdListByParent( $model->id, $parentType );
 		}
 		else {
 
-			$modelCategories	= $model->getCategoryIdListByType( $type );
+			$modelCategories	= $model->getCategoryIdListByType( $parentType );
 		}
 
 		$rootId				= 0;
