@@ -32,9 +32,11 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	public $model;
 
 	public $binderModel		= 'Binder';
+	public $mapToColumn		= false;
+	public $columnName		= null;
 
 	// Notes to help user in choosing categories.
-	public $notes			= 'Note: Choose at least one category to map.';
+	public $notes			= '<b>Notes</b>: Choose at least one category to map.';
 
 	// Flag to show notes
 	public $showNotes		= true;
@@ -105,5 +107,3 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 		return Html::tag( 'div', $widgetHtml, $this->options );
 	}
 }
-
-?>

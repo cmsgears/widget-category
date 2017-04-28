@@ -14,13 +14,16 @@ class CategoryAutoBox extends CategoryMapper {
 
 	public $levelList		= false;
 
-	public $notes			= 'Note: Type in search box to filter categories.';
+	public $notes			= '<b>Notes</b>: Type in search box to filter categories and select the category to map.';
 
 	public $showNotes		= true;
 
 	public $inputType		= 'none';
 
 	public $template		= 'auto-box';
+
+	// Application
+	public $app				= 'main';
 
 	// Controller where mapping request need to be triggered
 	public $controller		= 'category';
@@ -52,4 +55,5 @@ class CategoryAutoBox extends CategoryMapper {
 	// yii\base\Widget
 
 	// CategoryAutoBox
+
 }

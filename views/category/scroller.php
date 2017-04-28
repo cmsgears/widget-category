@@ -5,8 +5,12 @@ $parentType		= $widget->parentType;
 $levelList		= $widget->levelList;
 $model			= $widget->model;
 $binderModel	= $widget->binderModel;
+$mapToColumn	= $widget->mapToColumn;
+$columnName		= $widget->columnName;
+
 $notes			= $widget->notes;
 $showNotes		= $widget->showNotes;
+
 $inputType		= $widget->inputType;
 $disabled		= $widget->disabled;
 $service		= $widget->service;
@@ -15,20 +19,23 @@ $service		= $widget->service;
 <?php
 	if( count( $categories ) > 0 ) {
 
-		$modelCategories	= null;
+		$modelCategories	= [];
 
-		if( $service ) {
+		if( !$mapToColumn ) {
 
-			$catService			= Yii::$app->factory->get( 'modelCategoryService' );
-			$modelCategories	= $catService->getActiveCategoryIdListByParent( $model->id, $parentType );
+			if( $service ) {
+
+				$catService			= Yii::$app->factory->get( 'modelCategoryService' );
+				$modelCategories	= $catService->getActiveCategoryIdListByParent( $model->id, $parentType );
+			}
+			else {
+
+				$modelCategories	= $model->getCategoryIdListByType( $parentType );
+			}
 		}
-		else {
 
-			$modelCategories	= $model->getCategoryIdListByType( $parentType );
-		}
-
-		$rootId				= 0;
-		$depth				= 0;
+		$rootId		= 0;
+		$depth		= 0;
 
 		foreach ( $categories as $category ) {
 
@@ -57,21 +64,29 @@ $service		= $widget->service;
 				$temp[ 'id' ]	= $category->id;
 				$temp[ 'name' ]	= $category->name;
 				$category		= $temp;
+
+				$binder			= isset( $mapToColumn ) ? $binderModel . "[$columnName]" : $binderModel . "[bindedData][]";
 			}
 
 			if( in_array( $category[ 'id' ], $modelCategories ) ) {
 ?>
 				<span class="category depth-<?= $depth ?>">
-					<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-					<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" checked <?= $disabled ? 'disabled' : '' ?> />
+					<?php if( !$mapToColumn ) { ?>
+						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
+					<?php } ?>
+					<input type="<?= $inputType ?>" name="<?= $binder ?>" value="<?= $category[ 'id' ] ?>" checked <?= $disabled ? 'disabled' : '' ?> />
 					<?= $category[ 'name' ] ?>
 				</span>
 <?php		}
 			else {
+
+				$checked	= ( $mapToColumn && isset( $model->$columnName ) && $category[ 'id' ] == $model->$columnName ) ? 'checked' : null;
 ?>
 				<span class="category depth-<?= $depth ?>">
-					<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-					<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" <?= $disabled ? 'disabled' : '' ?> />
+					<?php if( !$mapToColumn ) { ?>
+						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
+					<?php } ?>
+					<input type="<?= $inputType ?>" name="<?= $binder ?>" value="<?= $category[ 'id' ] ?>" <?= $checked ?> <?= $disabled ? 'disabled' : '' ?> />
 					<?= $category[ 'name' ] ?>
 				</span>
 <?php		}

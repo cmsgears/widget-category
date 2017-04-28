@@ -6,6 +6,7 @@ $notes			= $widget->notes;
 $showNotes		= $widget->showNotes;
 $disabled		= $widget->disabled;
 
+$app			= $widget->app;
 $controller		= $widget->controller;
 $action			= $widget->action;
 $actionUrl		= $widget->actionUrl;
@@ -25,21 +26,33 @@ $deleteActionUrl	= $widget->deleteActionUrl;
 
 				foreach ( $categories as $key => $value ) {
 			?>
-					<li><span class='value'><?= $value ?></span></li>
+					<li><span class="value"><?= $value ?></span></li>
 			<?php } ?>
 			</ul>
 		</div>
 	<?php } else { ?>
-		<div class="auto-search cmt-request" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $actionUrl ?>" cmt-keep>
-			<input type="hidden" name="type" value="<?= $type ?>" />
-			<label>Search Category</label>
-			<input type="text" class="cmt-key-up" name="name" autocomplete="off" value="" />
+		<label>Search Category</label>
+		<div class="auto-fill">
+			<div class="wrap-fill" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $actionUrl ?>" cmt-keep cmt-custom>
+				<div class="relative">
+					<input type="hidden" name="type" value="<?= $type ?>" />
+					<div class="frm-icon-element icon-right">
+						<span class="cmti cmti-search"></span>
+						<input class="cmt-key-up auto-fill-text fill-clear" type="text" placeholder="Search Category" autocomplete="off" />
+					</div>
+					<span class="wrap-auto-list">
+						<ul class="auto-list vnav" map-action="<?= $mapAction ?>" map-url="<?= $mapActionUrl ?>"></ul>
+					</span>
+				</div>
+			</div>
+			<div class="wrap-field-auto"></div>
+			<div class="trigger-map-category" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $mapAction ?>" action="<?= $mapActionUrl ?>">
+				<input type="hidden" name="categoryId" />
+				<span class="cmt-click"></span>
+			</div>
 		</div>
-		<div class="auto-map cmt-request" cmt-controller="<?= $controller ?>" cmt-action="<?= $mapAction ?>" action="<?= $mapActionUrl ?>" cmt-keep>
-			<input type="hidden" name="categoryId" />
-			<ul class="item-list"></ul>
-		</div>
-		<div class="auto-mapped cmt-request" cmt-controller="<?= $controller ?>" cmt-action="<?= $deleteAction ?>" action="<?= $deleteActionUrl ?>" cmt-keep>
+		<div class="clear"></div>
+		<div class="auto-mapped" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $deleteAction ?>" action="<?= $deleteActionUrl ?>" cmt-keep>
 			<input type="hidden" name="categoryId" />
 			<ul class="item-list">
 			<?php
@@ -47,7 +60,7 @@ $deleteActionUrl	= $widget->deleteActionUrl;
 
 				foreach ( $categories as $key => $value ) {
 			?>
-					<li><span class='value'><?= $value ?></span><i data-id='<?= $key ?>' class='cmti cmti-close close cmt-click'></i></li>
+					<li><span class='value'><?= $value ?></span><i data-id='<?= $key ?>' class='cmti cmti-close-c close cmt-click'></i></li>
 			<?php } ?>
 			</ul>
 		</div>
