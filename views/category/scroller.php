@@ -64,9 +64,9 @@ $service		= $widget->service;
 				$temp[ 'id' ]	= $category->id;
 				$temp[ 'name' ]	= $category->name;
 				$category		= $temp;
-
-				$binder			= isset( $mapToColumn ) ? $binderModel . "[$columnName]" : $binderModel . "[bindedData][]";
 			}
+
+			$binder	= $mapToColumn ? $binderModel . "[$columnName]" : $binderModel . "[bindedData][]";
 
 			if( in_array( $category[ 'id' ], $modelCategories ) ) {
 ?>
