@@ -66,13 +66,13 @@ $service		= $widget->service;
 				$category		= $temp;
 			}
 
-			$binder	= $mapToColumn ? $binderModel . "[$columnName]" : $binderModel . "[bindedData][]";
+			$binder	= $mapToColumn ? $binderModel . "[$columnName]" : $binderModel . "[binded][]";
 
 			if( in_array( $category[ 'id' ], $modelCategories ) ) {
 ?>
 				<span class="category depth-<?= $depth ?>">
 					<?php if( !$mapToColumn ) { ?>
-						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
+						<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $category[ 'id' ] ?>" />
 					<?php } ?>
 					<input type="<?= $inputType ?>" name="<?= $binder ?>" value="<?= $category[ 'id' ] ?>" checked <?= $disabled ? 'disabled' : '' ?> />
 					<?= $category[ 'name' ] ?>
@@ -84,7 +84,7 @@ $service		= $widget->service;
 ?>
 				<span class="category depth-<?= $depth ?>">
 					<?php if( !$mapToColumn ) { ?>
-						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
+						<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $category[ 'id' ] ?>" />
 					<?php } ?>
 					<input type="<?= $inputType ?>" name="<?= $binder ?>" value="<?= $category[ 'id' ] ?>" <?= $checked ?> <?= $disabled ? 'disabled' : '' ?> />
 					<?= $category[ 'name' ] ?>

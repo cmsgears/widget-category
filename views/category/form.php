@@ -36,16 +36,16 @@ $service		= $widget->service;
 			if( in_array( $category[ 'id' ], $modelCategories ) ) {
 ?>
 				<span class="category col2">
-					<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-					<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" checked <?= $disabled ? 'disabled' : '' ?> />
+					<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $category[ 'id' ] ?>" />
+					<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $category[ 'id' ] ?>" checked <?= $disabled ? 'disabled' : '' ?> />
 					<?= $category[ 'name' ] ?>
 				</span>
 <?php		}
 			else {
 ?>
 				<span class="category col2">
-					<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $category[ 'id' ] ?>" />
-					<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $category[ 'id' ] ?>" <?= $disabled ? 'disabled' : '' ?> />
+					<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $category[ 'id' ] ?>" />
+					<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $category[ 'id' ] ?>" <?= $disabled ? 'disabled' : '' ?> />
 					<?= $category[ 'name' ] ?>
 				</span>
 <?php		}
