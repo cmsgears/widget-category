@@ -1,9 +1,6 @@
 <?php
 namespace cmsgears\widgets\category;
 
-// Yii Imports
-use \Yii;
-
 class CategoryAutoBox extends CategoryMapper {
 
 	// Variables ---------------------------------------------------
