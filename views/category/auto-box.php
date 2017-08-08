@@ -16,7 +16,7 @@ $mapActionUrl		= $widget->mapActionUrl;
 $deleteAction		= $widget->deleteAction;
 $deleteActionUrl	= $widget->deleteActionUrl;
 
-$categories	= $model->getCategoryIdNameMap( true );
+$modelCategories	= $model->activeModelCategories;
 ?>
 <div class="mapper mapper-auto mapper-auto-categories">
 	<div class="auto-fill auto-fill-basic">
@@ -41,23 +41,31 @@ $categories	= $model->getCategoryIdNameMap( true );
 		</div>
 		<div class="filler-height"></div>
 		<div class="mapper-items auto-fill-target">
-		<?php foreach ( $categories as $key => $value ) { ?>
-			<div class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $deleteAction ?>" action="<?= $deleteActionUrl ?>">
+		<?php
+			foreach ( $modelCategories as $modelCategory ) {
+
+				$category	= $modelCategory->category;
+				$deleteUrl	= "$deleteActionUrl&cid=$modelCategory->id";
+		?>
+			<div class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $deleteAction ?>" action="<?= $deleteUrl ?>">
 				<span class="spinner hidden-easy">
 					<span class="cmti cmti-spinner-1 spin"></span>
 				</span>
 				<span class="mapper-item-remove btn-icon-o"><i class="icon fa fa-close cmt-click"></i></span>
-				<span class="name"><?= $value ?></span>
-				<input class="id" type="hidden" name="categoryId" value="<?= $key ?>" />
+				<span class="name"><?= $category->name ?></span>
+				<input class="cid" type="hidden" name="cid" value="<?= $modelCategory->id ?>" />
 			</div>
 		<?php } ?>
 		</div>
 		<?php } else { ?>
 		<div class="mapper-items auto-fill-target">
-			<?php foreach ( $categories as $key => $value ) { ?>
+			<?php
+				foreach ( $modelCategories as $modelCategory ) {
+
+					$category	= $modelCategory->category;
+			?>
 			<div class="mapper-item">
-				<span class="name"><?= $value ?></span>
-				<input type="hidden" name="categoryId" value="<?= $key ?>" />
+				<span class="name"><?= $category->name ?></span>
 			</div>
 			<?php } ?>
 		</div>
