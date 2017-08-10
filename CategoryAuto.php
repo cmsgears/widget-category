@@ -1,11 +1,21 @@
 <?php
 namespace cmsgears\widgets\category;
 
-class CategoryAutoBox extends CategoryMapper {
+class CategoryAuto extends CategoryMapper {
 
 	// Variables ---------------------------------------------------
 
-	// Public Variables --------------------
+	// Globals -------------------------------
+
+	// Constants --------------
+
+	// Public -----------------
+
+	// Protected --------------
+
+	// Variables -----------------------------
+
+	// Public -----------------
 
 	public $searchByType	= false;
 
@@ -17,7 +27,7 @@ class CategoryAutoBox extends CategoryMapper {
 
 	public $inputType		= 'none';
 
-	public $template		= 'auto-box';
+	public $template		= 'auto';
 
 	// Application
 	public $app				= 'main';
@@ -43,14 +53,26 @@ class CategoryAutoBox extends CategoryMapper {
 	// Explicit URL to handle the controller delete action request
 	public $deleteActionUrl	= null;
 
-	// Private Variables -------------------
+	// Protected --------------
+
+	// Private ----------------
+
+	// Traits ------------------------------------------------------
 
 	// Constructor and Initialisation ------------------------------
 
-	// Instance Methods --------------------------------------------
+	// Instance methods --------------------------------------------
 
-	// yii\base\Widget
+	// Yii interfaces ------------------------
 
-	// CategoryAutoBox
+	// Yii parent classes --------------------
+
+	// yii\base\Widget --------
+
+	// CMG interfaces ------------------------
+
+	// CMG parent classes --------------------
+
+	// CategoryAuto --------------------------
 
 }
