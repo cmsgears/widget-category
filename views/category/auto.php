@@ -44,7 +44,7 @@ $modelCategories	= $model->activeModelCategories;
 		<?php
 			foreach ( $modelCategories as $modelCategory ) {
 
-				$category	= $modelCategory->category;
+				$category	= $modelCategory->model;
 				$deleteUrl	= "$deleteActionUrl&cid=$modelCategory->id";
 		?>
 			<div class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $deleteAction ?>" action="<?= $deleteUrl ?>">
@@ -62,7 +62,7 @@ $modelCategories	= $model->activeModelCategories;
 			<?php
 				foreach ( $modelCategories as $modelCategory ) {
 
-					$category	= $modelCategory->category;
+					$category	= $modelCategory->model;
 			?>
 			<div class="mapper-item">
 				<span class="name"><?= $category->name ?></span>
