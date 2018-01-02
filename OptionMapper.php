@@ -48,6 +48,8 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 
 	public $categoryOptions;
 
+	public $siteId;
+
 	// Protected --------------
 
 	// Private ----------------
@@ -63,6 +65,11 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 		parent::init();
 
 		$this->categoryService	= Yii::$app->factory->get( 'categoryService' );
+
+		if( !isset( $this->siteId) ){
+
+		  $this->siteId = Yii::$app->core->siteId;
+		}
 	}
 
 	// Instance methods --------------------------------------------
@@ -78,7 +85,7 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 		// Find category for given slug and type in case category is not provided.
 		if( !isset( $this->category ) ) {
 
-			$this->category	= $this->categoryService->getBySlugType( $this->categorySlug, $this->categoryType );
+			$this->category	= $this->categoryService->getBySlugType( $this->categorySlug, $this->categoryType, [ 'siteId' => $this->siteId ] );
 		}
 
 		// Retrieve category options
