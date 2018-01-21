@@ -2,7 +2,7 @@
 namespace cmsgears\widgets\category;
 
 // Yii Imports
-use \Yii;
+use Yii;
 use yii\helpers\Html;
 
 // CMG Imports
@@ -12,7 +12,17 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 
 	// Variables ---------------------------------------------------
 
-	// Public Variables --------------------
+	// Globals -------------------------------
+
+	// Constants --------------
+
+	// Public -----------------
+
+	// Protected --------------
+
+	// Variables -----------------------------
+
+	// Public -----------------
 
 	// Category models
 	public $categories		= [];
@@ -32,9 +42,11 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	public $model;
 
 	public $binderModel		= 'Binder';
+	public $mapToColumn		= false;
+	public $columnName		= null;
 
 	// Notes to help user in choosing categories.
-	public $notes			= 'Note: Choose at least one category to map.';
+	public $notes			= '<b>Notes</b>: Choose at least one category to map.';
 
 	// Flag to show notes
 	public $showNotes		= true;
@@ -54,13 +66,15 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	// Serach using model category service instead of trait
 	public $service			= false;
 
-	// Private Variables -------------------
+	// Protected --------------
+
+	// Private ----------------
 
 	private $categoryService;
 
-	// Constructor and Initialisation ------------------------------
+	// Traits ------------------------------------------------------
 
-	// yii\base\Object
+	// Constructor and Initialisation ------------------------------
 
 	public function init() {
 
@@ -69,9 +83,13 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 		$this->categoryService	= Yii::$app->factory->get( 'categoryService' );
 	}
 
-	// Instance Methods --------------------------------------------
+	// Instance methods --------------------------------------------
 
-	// yii\base\Widget
+	// Yii interfaces ------------------------
+
+	// Yii parent classes --------------------
+
+	// yii\base\Widget --------
 
 	public function run() {
 
@@ -96,14 +114,21 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 		return $this->renderWidget();
 	}
 
-	// CategoryWidget
+	// CMG interfaces ------------------------
+
+	// CMG parent classes --------------------
+
+	// CategoryMapper ------------------------
 
 	public function renderWidget( $config = [] ) {
 
 		$widgetHtml = $this->render( $this->template, [ 'widget' => $this ] );
 
-		return Html::tag( 'div', $widgetHtml, $this->options );
+		if( $this->wrap ) {
+
+			return Html::tag( $this->wrapper, $widgetHtml, $this->options );
+		}
+
+		return $widgetHtml;
 	}
 }
-
-?>

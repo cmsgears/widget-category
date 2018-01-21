@@ -1,26 +1,36 @@
 <?php
 namespace cmsgears\widgets\category;
 
-// Yii Imports
-use \Yii;
-
-class CategoryAutoBox extends CategoryMapper {
+class CategoryAuto extends CategoryMapper {
 
 	// Variables ---------------------------------------------------
 
-	// Public Variables --------------------
+	// Globals -------------------------------
+
+	// Constants --------------
+
+	// Public -----------------
+
+	// Protected --------------
+
+	// Variables -----------------------------
+
+	// Public -----------------
 
 	public $searchByType	= false;
 
 	public $levelList		= false;
 
-	public $notes			= 'Note: Type in search box to filter categories.';
+	public $notes			= '<b>Notes</b>: Type in search box to filter categories and select the category to map.';
 
 	public $showNotes		= true;
 
 	public $inputType		= 'none';
 
-	public $template		= 'auto-box';
+	public $template		= 'auto';
+
+	// Application
+	public $app				= 'main';
 
 	// Controller where mapping request need to be triggered
 	public $controller		= 'category';
@@ -43,13 +53,26 @@ class CategoryAutoBox extends CategoryMapper {
 	// Explicit URL to handle the controller delete action request
 	public $deleteActionUrl	= null;
 
-	// Private Variables -------------------
+	// Protected --------------
+
+	// Private ----------------
+
+	// Traits ------------------------------------------------------
 
 	// Constructor and Initialisation ------------------------------
 
-	// Instance Methods --------------------------------------------
+	// Instance methods --------------------------------------------
 
-	// yii\base\Widget
+	// Yii interfaces ------------------------
 
-	// CategoryAutoBox
+	// Yii parent classes --------------------
+
+	// yii\base\Widget --------
+
+	// CMG interfaces ------------------------
+
+	// CMG parent classes --------------------
+
+	// CategoryAuto --------------------------
+
 }

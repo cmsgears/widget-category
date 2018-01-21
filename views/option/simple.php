@@ -20,16 +20,16 @@ $inputType		= $widget->inputType;
 				if( in_array( $option->id, $modelOptions ) ) {
 ?>
 					<span class="options col2">
-						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $option->id ?>" />
-						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $option->id ?>" checked disabled />
+						<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
+						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" checked disabled />
 						<?= $option->value ?>
 					</span>
 <?php			}
 				else {
 ?>
 					<span class="options col2">
-						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $option->id ?>" />
-						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $option->id ?>" disabled />
+						<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
+						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" disabled />
 						<?= $option->value ?>
 					</span>
 <?php			}
@@ -39,16 +39,16 @@ $inputType		= $widget->inputType;
 				if( in_array( $option->id, $modelOptions ) ) {
 ?>
 					<span class="options col2">
-						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $option->id ?>" />
-						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $option->id ?>" checked />
+						<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
+						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" checked />
 						<?= $option->value ?>
 					</span>
 <?php			}
 				else {
 ?>
 					<span class="options col2">
-						<input type="hidden" name="<?= $binderModel ?>[allData][]" value="<?= $option->id ?>" />
-						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[bindedData][]" value="<?= $option->id ?>" />
+						<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
+						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" />
 						<?= $option->value ?>
 					</span>
 <?php			}

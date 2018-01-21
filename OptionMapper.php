@@ -1,10 +1,8 @@
 <?php
 namespace cmsgears\widgets\category;
 
-use \Yii;
+use Yii;
 use yii\helpers\Html;
-
-use cmsgears\core\common\services\resources\CategoryService;
 
 class OptionMapper extends \cmsgears\core\common\base\Widget {
 
@@ -28,21 +26,29 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 	// The model using Option Trait
 	public $model;
 
+	// The model name used to submit request
 	public $binderModel	= 'Binder';
 
+	// Notes displayed as hints
 	public $notes		= 'Note: Choose at least one option to map.';
 
+	// Flag to show notes
+	public $showNotes		= true;
+
+	// The input type to be used for mapping. It can be either checkbox or radio.
 	public $inputType	= 'checkbox';
 
 	public $disabled	= false;
 
 	public $templateDir	= '@cmsgears/widget-category/views/option';
-	public $template	= 'scroller';
+	public $template	= 'simple';
 
 	// Optional to use category in case type and slug are not given.
 	public $category;
 
 	public $categoryOptions;
+
+	public $siteId;
 
 	// Protected --------------
 
@@ -59,6 +65,11 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 		parent::init();
 
 		$this->categoryService	= Yii::$app->factory->get( 'categoryService' );
+
+		if( !isset( $this->siteId) ){
+
+		  $this->siteId = Yii::$app->core->siteId;
+		}
 	}
 
 	// Instance methods --------------------------------------------
@@ -74,9 +85,11 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 		// Find category for given slug and type in case category is not provided.
 		if( !isset( $this->category ) ) {
 
-			$this->category			= $this->categoryService->getBySlugType( $this->categorySlug, $this->categoryType );
-			$this->categoryOptions	= $this->category->options;
+			$this->category	= $this->categoryService->getBySlugType( $this->categorySlug, $this->categoryType, [ 'siteId' => $this->siteId ] );
 		}
+
+		// Retrieve category options
+		$this->categoryOptions	= $this->category->options;
 
 		return $this->renderWidget();
 	}
@@ -85,12 +98,17 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 
 	// CMG parent classes --------------------
 
-	// Widget --------------------------------
+	// OptionMapper --------------------------
 
 	public function renderWidget( $config = [] ) {
 
 		$widgetHtml = $this->render( $this->template, [ 'widget' => $this ] );
 
-		return Html::tag( 'div', $widgetHtml, $this->options );
+		if( $this->wrap ) {
+
+			return Html::tag( $this->wrapper, $widgetHtml, $this->options );
+		}
+
+		return $widgetHtml;
 	}
 }
