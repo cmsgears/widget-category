@@ -11,9 +11,9 @@ $inputType		= $widget->inputType;
 <?php
 	if( count( $options ) > 0 ) {
 
-		$modelOptions	= $model->getOptionIdListByCategoryId( $category->id );
+		$modelOptions = $model->getOptionIdListByCategoryId( $category->id );
 
-		foreach ( $options as $option ) {
+		foreach( $options as $option ) {
 
 			if( $disabled ) {
 

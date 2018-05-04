@@ -19,9 +19,9 @@ $service		= $widget->service;
 <?php
 	if( count( $categories ) > 0 ) {
 
-		$modelCategories	= [];
+		$modelCategories = [];
 
-		if( !$mapToColumn ) {
+		if( isset( $model ) && !$mapToColumn ) {
 
 			if( $service ) {
 
@@ -30,14 +30,14 @@ $service		= $widget->service;
 			}
 			else {
 
-				$modelCategories	= $model->getCategoryIdListByType( $parentType );
+				$modelCategories = $model->getCategoryIdListByType( $parentType );
 			}
 		}
 
-		$rootId		= 0;
-		$depth		= 0;
+		$rootId = 0;
+		$depth	= 0;
 
-		foreach ( $categories as $category ) {
+		foreach( $categories as $category ) {
 
 			if( $levelList ) {
 
@@ -60,10 +60,12 @@ $service		= $widget->service;
 			}
 			else {
 
-				$temp			= [];
+				$temp = [];
+
 				$temp[ 'id' ]	= $category->id;
 				$temp[ 'name' ]	= $category->name;
-				$category		= $temp;
+
+				$category = $temp;
 			}
 
 			$binder	= $mapToColumn ? $binderModel . "[$columnName]" : $binderModel . "[binded][]";
@@ -80,7 +82,7 @@ $service		= $widget->service;
 <?php		}
 			else {
 
-				$checked	= ( $mapToColumn && isset( $model->$columnName ) && $category[ 'id' ] == $model->$columnName ) ? 'checked' : null;
+				$checked = ( $mapToColumn && isset( $model->$columnName ) && $category[ 'id' ] == $model->$columnName ) ? 'checked' : null;
 ?>
 				<span class="category depth-<?= $depth ?>">
 					<?php if( !$mapToColumn ) { ?>

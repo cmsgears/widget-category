@@ -1,10 +1,27 @@
 <?php
+/**
+ * This file is part of CMSGears Framework. Please view License file distributed
+ * with the source code for license details.
+ *
+ * @link https://www.cmsgears.org/
+ * @copyright Copyright (c) 2015 VulpineCode Technologies Pvt. Ltd.
+ */
+
 namespace cmsgears\widgets\category;
 
+// Yii Imports
 use Yii;
 use yii\helpers\Html;
 
-class OptionMapper extends \cmsgears\core\common\base\Widget {
+// CMG Imports
+use cmsgears\core\common\base\Widget;
+
+/**
+ * OptionMapper maps category options to models.
+ *
+ * @since 1.0.0
+ */
+class OptionMapper extends Widget {
 
 	// Variables ---------------------------------------------------
 
@@ -27,13 +44,13 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 	public $model;
 
 	// The model name used to submit request
-	public $binderModel	= 'Binder';
+	public $binderModel	= 'OptionBinder';
 
 	// Notes displayed as hints
 	public $notes		= 'Note: Choose at least one option to map.';
 
 	// Flag to show notes
-	public $showNotes		= true;
+	public $showNotes	= true;
 
 	// The input type to be used for mapping. It can be either checkbox or radio.
 	public $inputType	= 'checkbox';
@@ -41,7 +58,7 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 	public $disabled	= false;
 
 	public $templateDir	= '@cmsgears/widget-category/views/option';
-	public $template	= 'simple';
+	public $template	= 'default';
 
 	// Optional to use category in case type and slug are not given.
 	public $category;
@@ -66,9 +83,9 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 
 		$this->categoryService	= Yii::$app->factory->get( 'categoryService' );
 
-		if( !isset( $this->siteId) ){
+		if( !isset( $this->siteId ) ){
 
-		  $this->siteId = Yii::$app->core->siteId;
+			$this->siteId = Yii::$app->core->siteId;
 		}
 	}
 
@@ -111,4 +128,5 @@ class OptionMapper extends \cmsgears\core\common\base\Widget {
 
 		return $widgetHtml;
 	}
+
 }

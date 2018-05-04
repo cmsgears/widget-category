@@ -10,15 +10,15 @@ $controller		= $widget->controller;
 $action			= $widget->action;
 $actionUrl		= $widget->actionUrl;
 
-$mapAction			= $widget->mapAction;
-$mapActionUrl		= $widget->mapActionUrl;
+$mapAction		= $widget->mapAction;
+$mapActionUrl	= $widget->mapActionUrl;
 
 $deleteAction		= $widget->deleteAction;
 $deleteActionUrl	= $widget->deleteActionUrl;
 
 $modelCategories	= $model->activeModelCategories;
 ?>
-<div class="mapper mapper-auto mapper-auto-categories">
+<div class="mapper mapper-auto mapper-auto-items" template="categoryMapperTemplate">
 	<div class="auto-fill auto-fill-basic">
 		<?php if( !$disabled ) { ?>
 		<div class="auto-fill-source" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $actionUrl ?>" cmt-keep cmt-custom>
@@ -35,14 +35,14 @@ $modelCategories	= $model->activeModelCategories;
 				</div>
 			</div>
 		</div>
-		<div class="trigger-map-category" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $mapAction ?>" action="<?= $mapActionUrl ?>">
-			<input type="hidden" name="categoryId" />
+		<div class="trigger-map-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $mapAction ?>" action="<?= $mapActionUrl ?>">
+			<input type="hidden" name="itemId" />
 			<span class="cmt-click"></span>
 		</div>
 		<div class="filler-height"></div>
 		<div class="mapper-items auto-fill-target">
 		<?php
-			foreach ( $modelCategories as $modelCategory ) {
+			foreach( $modelCategories as $modelCategory ) {
 
 				$category	= $modelCategory->model;
 				$deleteUrl	= "$deleteActionUrl&cid=$modelCategory->id";
@@ -60,9 +60,9 @@ $modelCategories	= $model->activeModelCategories;
 		<?php } else { ?>
 		<div class="mapper-items auto-fill-target">
 			<?php
-				foreach ( $modelCategories as $modelCategory ) {
+				foreach( $modelCategories as $modelCategory ) {
 
-					$category	= $modelCategory->model;
+					$category = $modelCategory->model;
 			?>
 			<div class="mapper-item">
 				<span class="name"><?= $category->name ?></span>
