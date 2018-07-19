@@ -7,7 +7,7 @@ $disabled		= $widget->disabled;
 $notes			= $widget->notes;
 $inputType		= $widget->inputType;
 ?>
-<div class="wrap-options clearfix">
+<div class="wrap-options row">
 <?php
 	if( count( $options ) > 0 ) {
 
@@ -19,18 +19,24 @@ $inputType		= $widget->inputType;
 
 				if( in_array( $option->id, $modelOptions ) ) {
 ?>
-					<span class="options col2">
-						<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
-						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" checked disabled />
-						<?= $option->value ?>
+					<span class="cmt-choice">
+						<label>
+							<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
+							<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" checked disabled />
+							<span class="label cmti cmti-checkbox"></span>
+							<?= $option->value ?>
+						</label>
 					</span>
 <?php			}
 				else {
 ?>
-					<span class="options col2">
-						<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
-						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" disabled />
-						<?= $option->value ?>
+					<span class="cmt-choice">
+						<label>
+							<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
+							<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" disabled />
+							<span class="label cmti cmti-checkbox"></span>
+							<?= $option->value ?>
+						</label>
 					</span>
 <?php			}
 			}
@@ -38,18 +44,25 @@ $inputType		= $widget->inputType;
 
 				if( in_array( $option->id, $modelOptions ) ) {
 ?>
-					<span class="options col2">
-						<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
-						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" checked />
-						<?= $option->value ?>
+
+					<span class="cmt-choice">
+						<label>
+							<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
+							<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" checked />
+							<span class="label cmti cmti-checkbox"></span>
+							<?= $option->value ?>
+						</label>
 					</span>
 <?php			}
 				else {
 ?>
-					<span class="options col2">
-						<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
-						<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" />
-						<?= $option->value ?>
+					<span class="cmt-choice">
+						<label>
+							<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
+							<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" />
+							<span class="label cmti cmti-checkbox"></span>
+							<?= $option->value ?>
+						</label>
 					</span>
 <?php			}
 			}
