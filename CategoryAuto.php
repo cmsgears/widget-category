@@ -30,42 +30,22 @@ class CategoryAuto extends CategoryMapper {
 
 	// Public -----------------
 
-	// Search not required for auto-suggest
-	public $searchByType	= false;
+	// Level not required for auto-suggest
+	public $levelList	= false;
 
-	public $levelList		= false;
-
-	public $notes			= '<b>Notes</b>: Type in search box to filter categories and select the category to map.';
-
-	public $showNotes		= true;
-
-	public $inputType		= 'none';
-
-	public $template		= 'auto';
+	public $template	= 'auto';
 
 	// Application
-	public $app				= 'mapper';
+	public $app			= 'mapper';
 
 	// Controller where mapping request need to be triggered
-	public $controller		= 'model';
+	public $controller	= 'model';
 
 	// Controller action to handle the search request
-	public $action			= 'autoSearch';
+	public $action		= 'toggleItem';
 
 	// Explicit URL to handle the controller search action request
-	public $actionUrl		= 'core/category/auto-search';
-
-	// Controller action to handle the mapping request
-	public $mapAction		= 'mapItem';
-
-	// Explicit URL to handle the controller mapping action request
-	public $mapActionUrl	= null;
-
-	// Controller action to handle the delete request
-	public $deleteAction	= 'deleteItem';
-
-	// Explicit URL to handle the controller delete action request
-	public $deleteActionUrl	= null;
+	public $actionUrl	= null;
 
 	// Protected --------------
 

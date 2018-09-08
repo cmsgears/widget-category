@@ -1,82 +1,47 @@
 <?php
-$type			= $widget->type;
-$model			= $widget->model;
-$disabled		= $widget->disabled;
-$notes			= $widget->notes;
-$showNotes		= $widget->showNotes;
+$inputType = $widget->inputType;
 
-$app			= $widget->app;
-$controller		= $widget->controller;
-$action			= $widget->action;
-$actionUrl		= $widget->actionUrl;
+$model = $widget->model;
 
-$mapAction		= $widget->mapAction;
-$mapActionUrl	= $widget->mapActionUrl;
+$disabled = $widget->disabled;
 
-$deleteAction		= $widget->deleteAction;
-$deleteActionUrl	= $widget->deleteActionUrl;
+$notes		= $widget->notes;
+$showNotes	= $widget->showNotes;
 
-$modelCategories	= $model->activeModelCategories;
+$app		= $widget->app;
+$controller	= $widget->controller;
+$action		= $widget->action;
+$actionUrl	= $widget->actionUrl;
+
+$categories			= $widget->categories;
+$modelCategories	= $model->getCategoryIdList();
 ?>
-<div class="mapper mapper-auto mapper-auto-items" template="categoryMapperTemplate">
-	<div class="auto-fill auto-fill-basic">
-		<?php if( !$disabled ) { ?>
-		<div class="auto-fill-source" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $actionUrl ?>" cmt-keep cmt-custom>
-			<div class="relative">
-				<div class="auto-fill-search clearfix">
-					<div class="frm-icon-element icon-right">
-						<span class="icon cmti cmti-search"></span>
-						<input class="cmt-key-up auto-fill-text search-name" type="text" name="name" placeholder="Search Category" autocomplete="off" />
-					</div>
-					<input class="search-type" type="hidden" name="type" value="<?= $type ?>" />
-				</div>
-				<div class="auto-fill-items-wrap">
-					<ul class="auto-fill-items vnav"></ul>
-				</div>
-			</div>
-		</div>
-		<div class="trigger-map-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $mapAction ?>" action="<?= $mapActionUrl ?>">
-			<input type="hidden" name="itemId" />
-			<span class="cmt-click"></span>
-		</div>
-		<div class="filler-height"></div>
-		<div class="mapper-items auto-fill-target">
+<div class="mapper mapper-action mapper-action-options">
+	<div class="mapper-items">
 		<?php
-			foreach( $modelCategories as $modelCategory ) {
+			foreach( $categories as $category ) {
 
-				$category	= $modelCategory->model;
-				$deleteUrl	= "$deleteActionUrl&cid=$modelCategory->id";
+				$mapped	= in_array( $category->id, $modelCategories );
+				$uid	= "category-cat-{$model->id}-{$category->id}";
 		?>
-			<div class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $deleteAction ?>" action="<?= $deleteUrl ?>">
-				<span class="spinner hidden-easy">
-					<span class="cmti cmti-spinner-1 spin"></span>
+			<?php if( $inputType == 'checkbox' ) { ?>
+			<span class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $actionUrl ?>&cid=<?= $category->id ?>" cmt-keep cmt-custom>
+				<span class="cmt-choice cmt-checkbox">
+					<label>
+						<input id="<?= $uid ?>" class="cmt-change" type="checkbox" name="value" <?= $mapped ? 'checked' : null ?> />
+						<span class="label cmti cmti-checkbox"></span>
+						<span><?= $category->name ?></span>
+					</label>
 				</span>
-				<span class="mapper-item-remove btn-icon-o"><i class="icon cmti cmti-close cmt-click"></i></span>
-				<span class="name"><?= $category->name ?></span>
-				<input class="cid" type="hidden" name="cid" value="<?= $modelCategory->id ?>" />
-			</div>
-		<?php } ?>
-		</div>
-		<?php } else { ?>
-		<div class="mapper-items auto-fill-target">
-			<?php
-				foreach( $modelCategories as $modelCategory ) {
-
-					$category = $modelCategory->model;
-			?>
-			<div class="mapper-item">
-				<span class="name"><?= $category->name ?></span>
-			</div>
+				<span class="spinner hidden-easy">
+					<span class="cmti cmti-1-5x cmti-spinner-1 spin"></span>
+				</span>
+			</span>
 			<?php } ?>
-		</div>
 		<?php } ?>
 	</div>
 </div>
-
-<div class="clear filler-height"></div>
-
-<?php if( !$disabled && $showNotes ) { ?>
+<?php if( !$disabled && $showNotes && !empty( $notes ) ) { ?>
+	<div class="clear filler-height"></div>
 	<div class="note"><?= $notes ?></div>
 <?php } ?>
-
-<?php include 'templates/category.php'; ?>

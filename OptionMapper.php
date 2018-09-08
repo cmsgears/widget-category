@@ -52,7 +52,7 @@ class OptionMapper extends Widget {
 	// Flag to show notes
 	public $showNotes	= true;
 
-	// The input type to be used for mapping. It can be either checkbox or radio.
+	// The input type to be used for mapping. It can be checkbox, radio or switch.
 	public $inputType	= 'checkbox';
 
 	public $disabled	= false;
