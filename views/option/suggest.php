@@ -54,7 +54,7 @@ $modelOptions = $model->getModelOptionsByCategoryId( $category->id );
 			foreach( $modelOptions as $modelOption ) {
 
 				$option		= $modelOption->model;
-				$deleteUrl	= "$deleteActionUrl&cid=$modelOption->id";
+				$deleteUrl	= strpos( $deleteActionUrl, '?' ) ? "$deleteActionUrl&cid=$modelOption->id" : "$deleteActionUrl?cid=$modelOption->id";
 		?>
 			<div class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $deleteAction ?>" action="<?= $deleteUrl ?>">
 				<span class="spinner hidden-easy">
