@@ -25,18 +25,31 @@ $modelOptions		= $model->getOptionIdListByCategoryId( $widget->category->id );
 				$uid	= "category-option-{$model->id}-{$categoryOption->id}";
 		?>
 			<?php if( $inputType == 'checkbox' ) { ?>
-			<span class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $actionUrl ?>&cid=<?= $categoryOption->id ?>" cmt-keep cmt-custom>
-				<span class="cmt-choice cmt-checkbox">
-					<label>
-						<input id="<?= $uid ?>" class="cmt-change" type="checkbox" name="value" <?= $mapped ? 'checked' : null ?> />
-						<span class="label cmti cmti-checkbox"></span>
-						<span><?= $categoryOption->name ?></span>
-					</label>
+				<span class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $actionUrl ?>&cid=<?= $categoryOption->id ?>" cmt-keep cmt-custom>
+					<span class="cmt-choice cmt-checkbox">
+						<label>
+							<input id="<?= $uid ?>" class="cmt-change" type="checkbox" name="value" <?= $mapped ? 'checked' : null ?> />
+							<span class="label cmti cmti-checkbox"></span>
+							<span><?= $categoryOption->name ?></span>
+						</label>
+					</span>
+					<span class="spinner hidden-easy">
+						<span class="cmti cmti-1-5x cmti-spinner-1 spin"></span>
+					</span>
 				</span>
-				<span class="spinner hidden-easy">
-					<span class="cmti cmti-1-5x cmti-spinner-1 spin"></span>
+			<?php } else if( $inputType == 'radio' ) { ?>
+				<span class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $actionUrl ?>&cid=<?= $categoryOption->id ?>" cmt-keep cmt-custom>
+					<span class="cmt-choice cmt-radio">
+						<label>
+							<input id="<?= $uid ?>" class="cmt-change" type="radio" name="value" <?= $mapped ? 'checked' : null ?> />
+							<span class="label cmti cmti-radio"></span>
+							<span><?= $categoryOption->name ?></span>
+						</label>
+					</span>
+					<span class="spinner hidden-easy">
+						<span class="cmti cmti-1-5x cmti-spinner-1 spin"></span>
+					</span>
 				</span>
-			</span>
 			<?php } ?>
 		<?php } ?>
 	</div>
