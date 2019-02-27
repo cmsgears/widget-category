@@ -10,11 +10,11 @@
 namespace cmsgears\widgets\category;
 
 /**
- * OptionAuto maps category options to models using auto-suggest.
+ * OptionSuggest maps category options to models using auto-suggest.
  *
  * @since 1.0.0
  */
-class OptionAuto extends OptionMapper {
+class OptionSuggest extends OptionAuto {
 
 	// Variables ---------------------------------------------------
 
@@ -30,7 +30,9 @@ class OptionAuto extends OptionMapper {
 
 	// Public -----------------
 
-	public $template	= 'auto';
+	public $template	= 'suggest';
+
+	public $label;
 
 	// Application
 	public $app			= 'mapper';
@@ -39,10 +41,22 @@ class OptionAuto extends OptionMapper {
 	public $controller	= 'model';
 
 	// Controller action to handle the search request
-	public $action		= 'toggleItem';
+	public $action		= 'autoSearch';
 
 	// Explicit URL to handle the controller search action request
-	public $actionUrl	= null;
+	public $actionUrl	= 'core/option/auto-search';
+
+	// Controller action to handle the mapping request
+	public $mapAction		= 'mapItem';
+
+	// Explicit URL to handle the controller mapping action request
+	public $mapActionUrl	= null;
+
+	// Controller action to handle the delete request
+	public $deleteAction	= 'deleteItem';
+
+	// Explicit URL to handle the controller delete action request
+	public $deleteActionUrl	= null;
 
 	// Protected --------------
 

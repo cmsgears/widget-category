@@ -1,6 +1,19 @@
 <?php
+/**
+ * This file is part of CMSGears Framework. Please view License file distributed
+ * with the source code for license details.
+ *
+ * @link https://www.cmsgears.org/
+ * @copyright Copyright (c) 2015 VulpineCode Technologies Pvt. Ltd.
+ */
+
 namespace cmsgears\widgets\category;
 
+/**
+ * CategoryAuto maps categories to models using auto-suggest.
+ *
+ * @since 1.0.0
+ */
 class CategoryAuto extends CategoryMapper {
 
 	// Variables ---------------------------------------------------
@@ -17,41 +30,22 @@ class CategoryAuto extends CategoryMapper {
 
 	// Public -----------------
 
-	public $searchByType	= false;
+	// Level not required for auto-suggest
+	public $levelList	= false;
 
-	public $levelList		= false;
-
-	public $notes			= '<b>Notes</b>: Type in search box to filter categories and select the category to map.';
-
-	public $showNotes		= true;
-
-	public $inputType		= 'none';
-
-	public $template		= 'auto';
+	public $template	= 'auto';
 
 	// Application
-	public $app				= 'main';
+	public $app			= 'mapper';
 
 	// Controller where mapping request need to be triggered
-	public $controller		= 'category';
+	public $controller	= 'model';
 
 	// Controller action to handle the search request
-	public $action			= 'autoSearch';
+	public $action		= 'toggleItem';
 
 	// Explicit URL to handle the controller search action request
-	public $actionUrl		= 'core/category/auto-search';
-
-	// Controller action to handle the mapping request
-	public $mapAction		= 'mapModelCategory';
-
-	// Explicit URL to handle the controller mapping action request
-	public $mapActionUrl	= null;
-
-	// Controller action to handle the delete request
-	public $deleteAction	= 'deleteModelCategory';
-
-	// Explicit URL to handle the controller delete action request
-	public $deleteActionUrl	= null;
+	public $actionUrl	= null;
 
 	// Protected --------------
 

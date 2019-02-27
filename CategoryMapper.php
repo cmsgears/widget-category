@@ -1,4 +1,12 @@
 <?php
+/**
+ * This file is part of CMSGears Framework. Please view License file distributed
+ * with the source code for license details.
+ *
+ * @link https://www.cmsgears.org/
+ * @copyright Copyright (c) 2015 VulpineCode Technologies Pvt. Ltd.
+ */
+
 namespace cmsgears\widgets\category;
 
 // Yii Imports
@@ -8,7 +16,14 @@ use yii\helpers\Html;
 // CMG Imports
 use cmsgears\core\common\config\CoreGlobal;
 
-class CategoryMapper extends \cmsgears\core\common\base\Widget {
+use cmsgears\core\common\base\Widget;
+
+/**
+ * CategoryMapper maps categories to models.
+ *
+ * @since 1.0.0
+ */
+class CategoryMapper extends Widget {
 
 	// Variables ---------------------------------------------------
 
@@ -41,7 +56,7 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	// The model using Category Trait
 	public $model;
 
-	public $binderModel		= 'Binder';
+	public $binderModel		= 'CategoryBinder';
 	public $mapToColumn		= false;
 	public $columnName		= null;
 
@@ -61,7 +76,7 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 	public $templateDir		= '@cmsgears/widget-category/views/category';
 
 	// Use form view only when levelList is set to false.
-	public $template		= 'scroller';
+	public $template		= 'level';
 
 	// Serach using model category service instead of trait
 	public $service			= false;
@@ -99,17 +114,17 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 			// Generate category following parent child relationship.
 			if( $this->levelList ) {
 
-				$this->categories	= $this->categoryService->getLevelListByType( $this->type );
+				$this->categories = $this->categoryService->getLevelListByType( $this->type );
 			}
 			// Generat flat list irrespective of parent child relationship.
 			else {
 
-				$this->categories	= $this->categoryService->getByType( $this->type );
+				$this->categories = $this->categoryService->getByType( $this->type );
 			}
 		}
 
 		// Configure parent type
-		$this->parentType	= isset( $this->parentType ) ? $this->parentType : $this->type;
+		$this->parentType = isset( $this->parentType ) ? $this->parentType : $this->type;
 
 		return $this->renderWidget();
 	}
@@ -131,4 +146,5 @@ class CategoryMapper extends \cmsgears\core\common\base\Widget {
 
 		return $widgetHtml;
 	}
+
 }
