@@ -48,10 +48,10 @@ class CategorySuggest extends CategoryMapper {
 	public $template	= 'suggest';
 
 	// Application
-	public $app			= 'mapper';
+	public $app			= 'core';
 
 	// Controller where mapping request need to be triggered
-	public $controller	= 'model';
+	public $controller	= 'modelMapper';
 
 	// Controller action to handle the search request
 	public $action		= 'autoSearch';
