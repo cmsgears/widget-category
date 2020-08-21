@@ -30,19 +30,21 @@ class OptionAuto extends OptionMapper {
 
 	// Public -----------------
 
-	public $template	= 'auto';
+	public $template = 'auto';
+
+	public $mapperClass = 'mapper mapper-inline mapper-action';
 
 	// Application
-	public $app			= 'core';
+	public $app = 'core';
 
 	// Controller where mapping request need to be triggered
-	public $controller	= 'modelMapper';
+	public $controller = 'modelMapper';
 
 	// Controller action to handle the search request
-	public $action		= 'toggleItem';
+	public $action = 'toggleItem';
 
 	// Explicit URL to handle the controller search action request
-	public $actionUrl	= null;
+	public $actionUrl = null;
 
 	// Protected --------------
 

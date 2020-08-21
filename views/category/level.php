@@ -11,14 +11,18 @@ $columnName		= $widget->columnName;
 $notes			= $widget->notes;
 $showNotes		= $widget->showNotes;
 
+$mapperClass = $widget->mapperClass;
+
 $inputType		= $widget->inputType;
 $disabled		= $widget->disabled;
 $service		= $widget->service;
 ?>
-<div class="wrap-categories cscroller">
+<div class="<?= $mapperClass ?>">
 <?php
 	if( count( $categories ) > 0 ) {
-
+?>
+	<div class="mapper-items">
+<?php
 		$modelCategories = [];
 
 		if( isset( $model ) && !$mapToColumn ) {
@@ -72,7 +76,7 @@ $service		= $widget->service;
 
 			if( in_array( $category[ 'id' ], $modelCategories ) ) {
 ?>
-				<span class="category depth-<?= $depth ?>">
+				<span class="mapper-item item-depth-<?= $depth ?>">
 					<?php if( !$mapToColumn ) { ?>
 						<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $category[ 'id' ] ?>" />
 					<?php } ?>
@@ -84,7 +88,7 @@ $service		= $widget->service;
 
 				$checked = ( $mapToColumn && isset( $model->$columnName ) && $category[ 'id' ] == $model->$columnName ) ? 'checked' : null;
 ?>
-				<span class="category depth-<?= $depth ?>">
+				<span class="mapper-item item-depth-<?= $depth ?>">
 					<?php if( !$mapToColumn ) { ?>
 						<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $category[ 'id' ] ?>" />
 					<?php } ?>
@@ -93,6 +97,9 @@ $service		= $widget->service;
 				</span>
 <?php		}
 		}
+?>
+	</div>
+<?php
 	}
 	else {
 

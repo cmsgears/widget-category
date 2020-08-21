@@ -47,18 +47,20 @@ class OptionMapper extends Widget {
 	public $binderModel	= 'OptionBinder';
 
 	// Notes displayed as hints
-	public $notes		= 'Note: Choose at least one option to map.';
+	public $notes = null;
 
 	// Flag to show notes
-	public $showNotes	= true;
+	public $showNotes = false;
 
 	// The input type to be used for mapping. It can be checkbox, radio or switch.
-	public $inputType	= 'checkbox';
+	public $inputType = 'checkbox';
 
-	public $disabled	= false;
+	public $disabled = false;
 
 	public $templateDir	= '@cmsgears/widget-category/views/option';
 	public $template	= 'default';
+
+	public $mapperClass = 'mapper mapper-inline';
 
 	// Optional to use category in case type and slug are not given.
 	public $category;

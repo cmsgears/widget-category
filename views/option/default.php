@@ -3,14 +3,21 @@ $category		= $widget->category;
 $options		= $widget->categoryOptions;
 $model			= $widget->model;
 $binderModel	= $widget->binderModel;
-$disabled		= $widget->disabled;
-$notes			= $widget->notes;
-$inputType		= $widget->inputType;
+
+$disabled = $widget->disabled;
+
+$notes = $widget->notes;
+
+$mapperClass = $widget->mapperClass;
+
+$inputType = $widget->inputType;
 ?>
-<div class="wrap-options row">
+<div class="<?= $mapperClass ?>">
 <?php
 	if( count( $options ) > 0 ) {
-
+?>
+	<div class="mapper-items">
+<?php
 		$modelOptions = $model->getOptionIdListByCategoryId( $category->id );
 
 		foreach( $options as $option ) {
@@ -19,54 +26,64 @@ $inputType		= $widget->inputType;
 
 				if( in_array( $option->id, $modelOptions ) ) {
 ?>
-					<span class="cmt-choice">
-						<label>
-							<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
-							<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" checked disabled />
-							<span class="label cmti cmti-checkbox"></span>
-							<?= $option->value ?>
-						</label>
-					</span>
+					<div class="mapper-item">
+						<span class="cmt-choice">
+							<label>
+								<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
+								<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" checked disabled />
+								<span class="label cmti cmti-checkbox"></span>
+								<?= $option->value ?>
+							</label>
+						</span>
+					</div>
 <?php			}
 				else {
 ?>
-					<span class="cmt-choice">
-						<label>
-							<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
-							<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" disabled />
-							<span class="label cmti cmti-checkbox"></span>
-							<?= $option->value ?>
-						</label>
-					</span>
+					<div class="mapper-item">
+						<span class="cmt-choice">
+							<label>
+								<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
+								<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" disabled />
+								<span class="label cmti cmti-checkbox"></span>
+								<?= $option->value ?>
+							</label>
+						</span>
+					</div>
 <?php			}
 			}
 			else {
 
 				if( in_array( $option->id, $modelOptions ) ) {
 ?>
-
-					<span class="cmt-choice">
-						<label>
-							<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
-							<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" checked />
-							<span class="label cmti cmti-checkbox"></span>
-							<?= $option->value ?>
-						</label>
-					</span>
+					<div class="mapper-item">
+						<span class="cmt-choice">
+							<label>
+								<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
+								<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" checked />
+								<span class="label cmti cmti-checkbox"></span>
+								<?= $option->value ?>
+							</label>
+						</span>
+					</div>
 <?php			}
 				else {
 ?>
-					<span class="cmt-choice">
-						<label>
-							<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
-							<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" />
-							<span class="label cmti cmti-checkbox"></span>
-							<?= $option->value ?>
-						</label>
-					</span>
+					<div class="mapper-item">
+						<span class="cmt-choice">
+							<label>
+								<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
+								<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" />
+								<span class="label cmti cmti-checkbox"></span>
+								<?= $option->value ?>
+							</label>
+						</span>
+					</div>
 <?php			}
 			}
 		}
+?>
+	</div>
+<?php
 	}
 	else {
 

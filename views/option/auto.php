@@ -1,4 +1,7 @@
 <?php
+// CMG Imports
+use cmsgears\core\common\utilities\UrlUtil;
+
 $inputType = $widget->inputType;
 
 $model = $widget->model;
@@ -8,6 +11,8 @@ $disabled = $widget->disabled;
 $notes		= $widget->notes;
 $showNotes	= $widget->showNotes;
 
+$mapperClass = $widget->mapperClass;
+
 $app		= $widget->app;
 $controller	= $widget->controller;
 $action		= $widget->action;
@@ -16,16 +21,17 @@ $actionUrl	= $widget->actionUrl;
 $categoryOptions	= $widget->categoryOptions;
 $modelOptions		= $model->getOptionIdListByCategoryId( $widget->category->id );
 ?>
-<div class="mapper mapper-action mapper-action-options">
+<div class="<?= $mapperClass ?>">
 	<div class="mapper-items">
 		<?php
 			foreach( $categoryOptions as $categoryOption ) {
 
 				$mapped	= in_array( $categoryOption->id, $modelOptions );
 				$uid	= "category-option-{$model->id}-{$categoryOption->id}";
+				$apix	= UrlUtil::addParam( $actionUrl, 'cid', $categoryOption->id );
 		?>
 			<?php if( $inputType == 'checkbox' ) { ?>
-				<span class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $actionUrl ?>&cid=<?= $categoryOption->id ?>" cmt-keep cmt-custom>
+				<span class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $apix ?>" cmt-keep cmt-custom>
 					<span class="cmt-choice cmt-checkbox">
 						<label>
 							<input id="<?= $uid ?>" class="cmt-change" type="checkbox" name="value" <?= $mapped ? 'checked' : null ?> <?= $disabled ? 'disabled' : null ?> />
@@ -38,7 +44,7 @@ $modelOptions		= $model->getOptionIdListByCategoryId( $widget->category->id );
 					</span>
 				</span>
 			<?php } else if( $inputType == 'radio' ) { ?>
-				<span class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $actionUrl ?>&cid=<?= $categoryOption->id ?>" cmt-keep cmt-custom>
+				<span class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $apix ?>" cmt-keep cmt-custom>
 					<span class="cmt-choice cmt-radio">
 						<label>
 							<input id="<?= $uid ?>" class="cmt-change" type="radio" name="value" <?= $mapped ? 'checked' : null ?> <?= $disabled ? 'disabled' : null ?> />

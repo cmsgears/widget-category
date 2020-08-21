@@ -11,6 +11,8 @@ $disabled = $widget->disabled;
 $notes		= $widget->notes;
 $showNotes	= $widget->showNotes;
 
+$mapperClass = $widget->mapperClass;
+
 $app			= $widget->app;
 $controller		= $widget->controller;
 $action			= $widget->action;
@@ -24,7 +26,7 @@ $deleteActionUrl	= $widget->deleteActionUrl;
 
 $modelOptions = $model->getModelOptionsByCategoryId( $category->id );
 ?>
-<div class="mapper mapper-auto mapper-auto-items" template="optionMapperTemplate">
+<div class="<?= $mapperClass ?>" template="optionMapperTemplate">
 	<div class="auto-fill auto-fill-basic">
 		<?php if( !$disabled ) { ?>
 		<div class="auto-fill-source" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $actionUrl ?>" cmt-keep cmt-custom>
