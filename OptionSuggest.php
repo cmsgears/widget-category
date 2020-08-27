@@ -32,7 +32,7 @@ class OptionSuggest extends OptionAuto {
 
 	public $template = 'suggest';
 
-	public $mapperClass = 'mapper mapper-auto mapper-auto-items';
+	public $mapperClass = 'mapper mapper-inline mapper-auto mapper-auto-items';
 
 	public $label;
 

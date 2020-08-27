@@ -47,7 +47,7 @@ class CategorySuggest extends CategoryMapper {
 
 	public $template = 'suggest';
 
-	public $mapperClass = 'mapper mapper-auto mapper-auto-items';
+	public $mapperClass = 'mapper mapper-inline mapper-auto mapper-auto-items';
 
 	// Application
 	public $app = 'core';
