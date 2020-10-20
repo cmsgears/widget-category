@@ -32,8 +32,8 @@ $modelCategories	= $model->getCategoryIdList();
 		?>
 			<?php if( $inputType == 'checkbox' ) { ?>
 			<span class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $apix ?>" cmt-keep cmt-custom>
-				<span class="cmt-choice cmt-checkbox">
-					<label>
+				<span class="cmt-checkbox choice">
+					<label class="choice-option">
 						<input id="<?= $uid ?>" class="cmt-change" type="checkbox" name="value" <?= $mapped ? 'checked' : null ?> />
 						<span class="label cmti cmti-checkbox"></span>
 						<span><?= $category->name ?></span>

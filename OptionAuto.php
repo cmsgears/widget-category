@@ -32,7 +32,7 @@ class OptionAuto extends OptionMapper {
 
 	public $template = 'auto';
 
-	public $mapperClass = 'mapper mapper-inline mapper-action';
+	public $mapperClass = 'mapper mapper-layout mapper-layout-inline mapper-action';
 
 	// Application
 	public $app = 'core';

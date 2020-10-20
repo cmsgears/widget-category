@@ -48,7 +48,7 @@ $modelOptions = $model->getModelOptionsByCategoryId( $category->id );
 		</div>
 		<div class="trigger-map-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $mapAction ?>" action="<?= $mapActionUrl ?>">
 			<input type="hidden" name="itemId" />
-			<span class="cmt-click"></span>
+			<span class="cmt-click click"></span>
 		</div>
 		<div class="filler-height"></div>
 		<div class="mapper-items auto-fill-target">
@@ -62,7 +62,7 @@ $modelOptions = $model->getModelOptionsByCategoryId( $category->id );
 				<span class="spinner hidden-easy">
 					<span class="cmti cmti-spinner-1 spin"></span>
 				</span>
-				<span class="mapper-item-remove btn-icon-o"><i class="icon cmti cmti-close cmt-click"></i></span>
+				<span class="mapper-item-remove btn-icon-o"><i class="icon cmti cmti-close cmt-click click"></i></span>
 				<span class="name"><?= $option->name ?></span>
 				<input class="cid" type="hidden" name="cid" value="<?= $modelOption->id ?>" />
 			</div>

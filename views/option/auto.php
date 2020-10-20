@@ -32,8 +32,8 @@ $modelOptions		= $model->getOptionIdListByCategoryId( $widget->category->id );
 		?>
 			<?php if( $inputType == 'checkbox' ) { ?>
 				<span class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $apix ?>" cmt-keep cmt-custom>
-					<span class="cmt-choice cmt-checkbox">
-						<label>
+					<span class="cmt-checkbox choice">
+						<label class="choice-option">
 							<input id="<?= $uid ?>" class="cmt-change" type="checkbox" name="value" <?= $mapped ? 'checked' : null ?> <?= $disabled ? 'disabled' : null ?> />
 							<span class="label cmti cmti-checkbox"></span>
 							<span><?= $categoryOption->name ?></span>
@@ -46,7 +46,7 @@ $modelOptions		= $model->getOptionIdListByCategoryId( $widget->category->id );
 			<?php } else if( $inputType == 'radio' ) { ?>
 				<span class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $apix ?>" cmt-keep cmt-custom>
 					<span class="cmt-choice cmt-radio">
-						<label>
+						<label class="choice-option">
 							<input id="<?= $uid ?>" class="cmt-change" type="radio" name="value" <?= $mapped ? 'checked' : null ?> <?= $disabled ? 'disabled' : null ?> />
 							<span class="label cmti cmti-radio"></span>
 							<span><?= $categoryOption->name ?></span>
