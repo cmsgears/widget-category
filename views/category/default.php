@@ -5,16 +5,22 @@ $parentType		= $widget->parentType;
 $levelList		= $widget->levelList;
 $model			= $widget->model;
 $binderModel	= $widget->binderModel;
-$notes			= $widget->notes;
-$showNotes		= $widget->showNotes;
-$inputType		= $widget->inputType;
-$disabled		= $widget->disabled;
-$service		= $widget->service;
+
+$notes		= $widget->notes;
+$showNotes	= $widget->showNotes;
+
+$mapperClass = $widget->mapperClass;
+
+$inputType	= $widget->inputType;
+$disabled	= $widget->disabled;
+$service	= $widget->service;
 ?>
-<div class="wrap-categories clearfix">
+<div class="<?= $mapperClass ?>">
 <?php
 	if( count( $categories ) > 0 ) {
-
+?>
+	<div class="mapper-items">
+<?php
 		$modelCategories = [];
 
 		if( isset( $model ) ) {
@@ -41,21 +47,24 @@ $service		= $widget->service;
 
 			if( in_array( $category[ 'id' ], $modelCategories ) ) {
 ?>
-				<span class="category col2">
+				<div class="mapper-item">
 					<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $category[ 'id' ] ?>" />
 					<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $category[ 'id' ] ?>" checked <?= $disabled ? 'disabled' : '' ?> />
 					<?= $category[ 'name' ] ?>
-				</span>
+				</div>
 <?php		}
 			else {
 ?>
-				<span class="category col2">
+				<div class="mapper-item">
 					<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $category[ 'id' ] ?>" />
 					<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $category[ 'id' ] ?>" <?= $disabled ? 'disabled' : '' ?> />
 					<?= $category[ 'name' ] ?>
-				</span>
+				</div>
 <?php		}
 		}
+?>
+	</div>
+<?php
 	}
 	else {
 

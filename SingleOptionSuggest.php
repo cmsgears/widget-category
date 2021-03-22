@@ -10,11 +10,11 @@
 namespace cmsgears\widgets\category;
 
 /**
- * OptionSuggest maps category options to models using auto-suggest.
+ * SingleOptionSuggest maps category option to model using auto-suggest.
  *
  * @since 1.0.0
  */
-class OptionSuggest extends OptionAuto {
+class SingleOptionSuggest extends OptionSuggest {
 
 	// Variables ---------------------------------------------------
 
@@ -30,35 +30,10 @@ class OptionSuggest extends OptionAuto {
 
 	// Public -----------------
 
-	public $template = 'suggest';
+	public $template = 'single-suggest';
 
-	public $mapperClass = 'mapper mapper-layout mapper-layout-inline mapper-auto mapper-auto-items';
-
-	public $label;
-
-	// Application
-	public $app = 'core';
-
-	// Controller where mapping request need to be triggered
-	public $controller = 'modelMapper';
-
-	// Controller action to handle the search request
-	public $action = 'autoSearch';
-
-	// Explicit URL to handle the controller search action request
-	public $actionUrl = 'core/option/auto-search';
-
-	// Controller action to handle the mapping request
-	public $mapAction = 'mapItem';
-
-	// Explicit URL to handle the controller mapping action request
-	public $mapActionUrl = null;
-
-	// Controller action to handle the delete request
-	public $deleteAction = 'deleteItem';
-
-	// Explicit URL to handle the controller delete action request
-	public $deleteActionUrl	= null;
+	public $column;
+	public $mapping;
 
 	// Protected --------------
 
@@ -80,6 +55,6 @@ class OptionSuggest extends OptionAuto {
 
 	// CMG parent classes --------------------
 
-	// OptionAuto ----------------------------
+	// SingleOptionSuggest -------------------
 
 }

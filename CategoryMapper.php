@@ -40,18 +40,18 @@ class CategoryMapper extends Widget {
 	// Public -----------------
 
 	// Category models
-	public $categories		= [];
+	public $categories = [];
 
 	// Type to be used to search categories.
-	public $type			= CoreGlobal::TYPE_SYSTEM;
+	public $type = CoreGlobal::TYPE_SYSTEM;
 
-	public $parentType		= null;
+	public $parentType = null;
 
 	// Flag to search category for given type in case Category models not provided or empty.
-	public $searchByType	= true;
+	public $searchByType = true;
 
 	// Flag to search categories following parent child relationship.
-	public $levelList		= true;
+	public $levelList = false;
 
 	// The model using Category Trait
 	public $model;
@@ -61,25 +61,27 @@ class CategoryMapper extends Widget {
 	public $columnName		= null;
 
 	// Notes to help user in choosing categories.
-	public $notes			= '<b>Notes</b>: Choose at least one category to map.';
+	public $notes = null;
 
 	// Flag to show notes
-	public $showNotes		= true;
+	public $showNotes = false;
 
 	// Input type among checkbox, radio to render the chooser.
-	public $inputType		= 'checkbox';
+	public $inputType = 'checkbox';
 
 	// Disable all the rendered categories.
-	public $disabled		= false;
+	public $disabled = false;
 
 	// Override default view path
-	public $templateDir		= '@cmsgears/widget-category/views/category';
+	public $templateDir = '@cmsgears/widget-category/views/category';
 
 	// Use form view only when levelList is set to false.
-	public $template		= 'level';
+	public $template = 'default';
+
+	public $mapperClass = 'mapper mapper-inline';
 
 	// Serach using model category service instead of trait
-	public $service			= false;
+	public $service = false;
 
 	// Protected --------------
 

@@ -5,6 +5,9 @@ $category = $widget->category;
 
 $label	= $widget->label;
 $model	= $widget->model;
+$column	= $widget->column;
+
+$mapping = $widget->mapping;
 
 $disabled = $widget->disabled;
 
@@ -48,35 +51,31 @@ $modelOptions = $model->getModelOptionsByCategoryId( $category->id );
 		</div>
 		<div class="trigger-map-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $mapAction ?>" action="<?= $mapActionUrl ?>">
 			<input type="hidden" name="itemId" />
-			<span class="cmt-click click"></span>
+			<input type="hidden" name="column" value="<?= $column ?>" />
+			<span class="cmt-click"></span>
 		</div>
 		<div class="filler-height"></div>
-		<div class="mapper-items auto-fill-target">
+		<div class="mapper-items auto-fill-target" data-single>
 		<?php
-			foreach( $modelOptions as $modelOption ) {
+			if( isset( $mapping ) ) {
 
-				$option		= $modelOption->model;
-				$deleteUrl	= strpos( $deleteActionUrl, '?' ) ? "$deleteActionUrl&cid=$modelOption->id" : "$deleteActionUrl?cid=$modelOption->id";
+				$deleteUrl = strpos( $deleteActionUrl, '?' ) ? "$deleteActionUrl&cid=$mapping->id" : "$deleteActionUrl?cid=$mapping->id";
 		?>
 			<div class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $deleteAction ?>" action="<?= $deleteUrl ?>">
 				<span class="spinner hidden-easy">
 					<span class="cmti cmti-spinner-1 spin"></span>
 				</span>
-				<span class="mapper-item-remove btn-icon-o"><i class="icon cmti cmti-close cmt-click click"></i></span>
-				<span class="name"><?= $option->name ?></span>
-				<input class="cid" type="hidden" name="cid" value="<?= $modelOption->id ?>" />
+				<span class="mapper-item-remove btn-icon-o"><i class="icon cmti cmti-close cmt-click"></i></span>
+				<span class="name"><?= $mapping->name ?></span>
+				<input class="cid" type="hidden" name="cid" value="<?= $mapping->id ?>" />
 			</div>
 		<?php } ?>
 		</div>
 		<?php } else { ?>
 		<div class="mapper-items auto-fill-target">
-			<?php
-				foreach( $modelOptions as $modelOption ) {
-
-					$option = $modelOption->model;
-			?>
+			<?php if( isset( $mapping ) ) { ?>
 			<div class="mapper-item">
-				<span class="name"><?= $option->name ?></span>
+				<span class="name"><?= $mapping->name ?></span>
 			</div>
 			<?php } ?>
 		</div>

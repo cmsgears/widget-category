@@ -31,21 +31,23 @@ class CategoryAuto extends CategoryMapper {
 	// Public -----------------
 
 	// Level not required for auto-suggest
-	public $levelList	= false;
+	public $levelList = false;
 
-	public $template	= 'auto';
+	public $template = 'auto';
+
+	public $mapperClass = 'mapper mapper-layout mapper-layout-inline mapper-action';
 
 	// Application
-	public $app			= 'mapper';
+	public $app = 'core';
 
 	// Controller where mapping request need to be triggered
-	public $controller	= 'model';
+	public $controller = 'modelMapper';
 
 	// Controller action to handle the search request
-	public $action		= 'toggleItem';
+	public $action = 'toggleItem';
 
 	// Explicit URL to handle the controller search action request
-	public $actionUrl	= null;
+	public $actionUrl = null;
 
 	// Protected --------------
 

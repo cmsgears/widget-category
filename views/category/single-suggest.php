@@ -1,10 +1,12 @@
 <?php
 $title = $widget->title;
 
-$category = $widget->category;
-
+$type	= $widget->type;
 $label	= $widget->label;
 $model	= $widget->model;
+$column	= $widget->column;
+
+$mapping = $widget->mapping;
 
 $disabled = $widget->disabled;
 
@@ -13,10 +15,10 @@ $showNotes	= $widget->showNotes;
 
 $mapperClass = $widget->mapperClass;
 
-$app			= $widget->app;
-$controller		= $widget->controller;
-$action			= $widget->action;
-$actionUrl		= $widget->actionUrl;
+$app		= $widget->app;
+$controller	= $widget->controller;
+$action		= $widget->action;
+$actionUrl	= $widget->actionUrl;
 
 $mapAction		= $widget->mapAction;
 $mapActionUrl	= $widget->mapActionUrl;
@@ -24,9 +26,9 @@ $mapActionUrl	= $widget->mapActionUrl;
 $deleteAction		= $widget->deleteAction;
 $deleteActionUrl	= $widget->deleteActionUrl;
 
-$modelOptions = $model->getModelOptionsByCategoryId( $category->id );
+$modelCategories = $model->activeModelCategories;
 ?>
-<div class="<?= $mapperClass ?>" template="optionMapperTemplate">
+<div class="<?= $mapperClass ?>" template="categoryMapperTemplate">
 	<div class="auto-fill auto-fill-basic">
 		<?php if( !$disabled ) { ?>
 		<div class="auto-fill-source" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $action ?>" action="<?= $actionUrl ?>" cmt-keep cmt-custom>
@@ -37,9 +39,9 @@ $modelOptions = $model->getModelOptionsByCategoryId( $category->id );
 					<?php } ?>
 					<div class="frm-icon-element icon-right">
 						<span class="icon cmti cmti-search"></span>
-						<input class="cmt-key-up auto-fill-text search-name" type="text" name="name" placeholder="Search Option" autocomplete="off" />
+						<input class="cmt-key-up auto-fill-text search-name" type="text" name="name" placeholder="Search Category" autocomplete="off" />
 					</div>
-					<input class="search-type" type="hidden" name="type" value="<?= $category->id ?>" />
+					<input class="search-type" type="hidden" name="type" value="<?= $type ?>" />
 				</div>
 				<div class="auto-fill-items-wrap">
 					<ul class="auto-fill-items vnav"></ul>
@@ -48,35 +50,30 @@ $modelOptions = $model->getModelOptionsByCategoryId( $category->id );
 		</div>
 		<div class="trigger-map-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $mapAction ?>" action="<?= $mapActionUrl ?>">
 			<input type="hidden" name="itemId" />
-			<span class="cmt-click click"></span>
+			<span class="cmt-click"></span>
 		</div>
 		<div class="filler-height"></div>
-		<div class="mapper-items auto-fill-target">
+		<div class="mapper-items auto-fill-target" data-single>
 		<?php
-			foreach( $modelOptions as $modelOption ) {
+			if( isset( $mapping ) ) {
 
-				$option		= $modelOption->model;
-				$deleteUrl	= strpos( $deleteActionUrl, '?' ) ? "$deleteActionUrl&cid=$modelOption->id" : "$deleteActionUrl?cid=$modelOption->id";
+				$deleteUrl = strpos( $deleteActionUrl, '?' ) ? "$deleteActionUrl&cid=$mapping->id" : "$deleteActionUrl?cid=$mapping->id";
 		?>
 			<div class="mapper-item" cmt-app="<?= $app ?>" cmt-controller="<?= $controller ?>" cmt-action="<?= $deleteAction ?>" action="<?= $deleteUrl ?>">
 				<span class="spinner hidden-easy">
 					<span class="cmti cmti-spinner-1 spin"></span>
 				</span>
-				<span class="mapper-item-remove btn-icon-o"><i class="icon cmti cmti-close cmt-click click"></i></span>
-				<span class="name"><?= $option->name ?></span>
-				<input class="cid" type="hidden" name="cid" value="<?= $modelOption->id ?>" />
+				<span class="mapper-item-remove btn-icon-o"><i class="icon cmti cmti-close cmt-click"></i></span>
+				<span class="name"><?= $mapping->name ?></span>
+				<input class="cid" type="hidden" name="cid" value="<?= $mapping->id ?>" />
 			</div>
 		<?php } ?>
 		</div>
 		<?php } else { ?>
 		<div class="mapper-items auto-fill-target">
-			<?php
-				foreach( $modelOptions as $modelOption ) {
-
-					$option = $modelOption->model;
-			?>
+			<?php if( isset( $mapping ) ) { ?>
 			<div class="mapper-item">
-				<span class="name"><?= $option->name ?></span>
+				<span class="name"><?= $mapping->name ?></span>
 			</div>
 			<?php } ?>
 		</div>
@@ -84,9 +81,10 @@ $modelOptions = $model->getModelOptionsByCategoryId( $category->id );
 	</div>
 </div>
 
-<?php if( !$disabled && $showNotes && !empty( $notes ) ) { ?>
-	<div class="clear filler-height"></div>
+<div class="clear filler-height"></div>
+
+<?php if( !$disabled && $showNotes ) { ?>
 	<div class="note"><?= $notes ?></div>
 <?php } ?>
 
-<?php include 'templates/option.php'; ?>
+<?php include 'templates/category.php'; ?>

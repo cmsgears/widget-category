@@ -31,27 +31,29 @@ class CategorySuggest extends CategoryMapper {
 	// Public -----------------
 
 	// Search not required for auto-suggest
-	public $searchByType	= false;
+	public $searchByType = false;
 
 	// Level not required for auto-suggest
-	public $levelList		= false;
+	public $levelList = false;
 
 	// Input type not required for auto-suggest
-	public $inputType		= 'none';
+	public $inputType = 'none';
 
 	public $label;
 
-	public $notes		= '<b>Notes</b>: Type in search box to filter categories and select the category to map.';
+	public $notes = '<b>Notes</b>: Type in search box to filter categories and select the category to map.';
 
-	public $showNotes	= true;
+	public $showNotes = true;
 
-	public $template	= 'suggest';
+	public $template = 'suggest';
+
+	public $mapperClass = 'mapper mapper-layout mapper-layout-inline mapper-auto mapper-auto-items';
 
 	// Application
-	public $app			= 'mapper';
+	public $app = 'core';
 
 	// Controller where mapping request need to be triggered
-	public $controller	= 'model';
+	public $controller	= 'modelMapper';
 
 	// Controller action to handle the search request
 	public $action		= 'autoSearch';
