@@ -60,7 +60,7 @@ class OptionMapper extends Widget {
 	public $templateDir	= '@cmsgears/widget-category/views/option';
 	public $template	= 'default';
 
-	public $mapperClass = 'mapper mapper-inline';
+	public $mapperClass = 'mapper mapper-layout mapper-layout-inline';
 
 	// Optional to use category in case type and slug are not given.
 	public $category;
