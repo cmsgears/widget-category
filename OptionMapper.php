@@ -14,6 +14,8 @@ use Yii;
 use yii\helpers\Html;
 
 // CMG Imports
+use cmsgears\core\common\config\CoreGlobal;
+
 use cmsgears\core\common\base\Widget;
 
 /**
@@ -37,7 +39,7 @@ class OptionMapper extends Widget {
 
 	// Public -----------------
 
-	public $categoryType	= null;
+	public $categoryType	= CoreGlobal::TYPE_OPTION_GROUP;
 	public $categorySlug	= null;
 
 	// The model using Option Trait
