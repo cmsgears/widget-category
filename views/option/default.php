@@ -27,12 +27,12 @@ $inputType = $widget->inputType;
 				if( in_array( $option->id, $modelOptions ) ) {
 ?>
 					<div class="mapper-item">
-						<span class="cmt-choice">
-							<label>
+						<span class="choice">
+							<label class="choice-option">
 								<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
 								<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" checked disabled />
 								<span class="label cmti cmti-checkbox"></span>
-								<?= $option->value ?>
+								<?= $option->name ?>
 							</label>
 						</span>
 					</div>
@@ -40,12 +40,12 @@ $inputType = $widget->inputType;
 				else {
 ?>
 					<div class="mapper-item">
-						<span class="cmt-choice">
-							<label>
+						<span class="choice">
+							<label class="choice-option">
 								<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
 								<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" disabled />
 								<span class="label cmti cmti-checkbox"></span>
-								<?= $option->value ?>
+								<?= $option->name ?>
 							</label>
 						</span>
 					</div>
@@ -56,12 +56,12 @@ $inputType = $widget->inputType;
 				if( in_array( $option->id, $modelOptions ) ) {
 ?>
 					<div class="mapper-item">
-						<span class="cmt-choice">
-							<label>
+						<span class="choice">
+							<label class="choice-option">
 								<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
 								<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" checked />
 								<span class="label cmti cmti-checkbox"></span>
-								<?= $option->value ?>
+								<?= $option->name ?>
 							</label>
 						</span>
 					</div>
@@ -69,12 +69,12 @@ $inputType = $widget->inputType;
 				else {
 ?>
 					<div class="mapper-item">
-						<span class="cmt-choice">
-							<label>
+						<span class="choice">
+							<label class="choice-option">
 								<input type="hidden" name="<?= $binderModel ?>[all][]" value="<?= $option->id ?>" />
 								<input type="<?= $inputType ?>" name="<?= $binderModel ?>[binded][]" value="<?= $option->id ?>" />
 								<span class="label cmti cmti-checkbox"></span>
-								<?= $option->value ?>
+								<?= $option->name ?>
 							</label>
 						</span>
 					</div>
